@@ -1,0 +1,30 @@
+[
+  {
+    "name": "JavaScript",
+    "iconImage": "../images/tech-icons/javascript.svg"
+  },
+  {
+    "name": "HTML",
+    "iconImage": "../images/tech-icons/html.svg"
+  },
+  {
+    "name": "Photoshop",
+    "iconImage": "../images/tech-icons/photoshop.svg"
+  },
+  {
+    "name": "PHP",
+    "iconImage": "../images/tech-icons/php.svg"
+  },
+  {
+    "name": "React",
+    "iconImage": "../images/tech-icons/react.svg"
+  },
+  {
+    "name": "Sketch",
+    "iconImage": "../images/tech-icons/sketch.svg"
+  },
+  {
+    "name": "Wordpress",
+    "iconImage": "../images/tech-icons/wordpress.svg"
+  }
+]

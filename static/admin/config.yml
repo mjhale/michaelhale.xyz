@@ -7,6 +7,7 @@ backend:
     delete: 'CMS: Delete {{collection}} "{{slug}}".'
     uploadMedia: 'CMS: Upload "{{path}}".'
     deleteMedia: 'CMS: Delete "{{path}}".'
+  squash_merges: true
 
 media_folder: 'static/assets'
 public_folder: 'assets'

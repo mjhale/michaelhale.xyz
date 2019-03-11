@@ -40,8 +40,16 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'data',
-        path: `${__dirname}/src/data/`,
+        name: 'projects',
+        path: `${__dirname}/_data/projects`,
+        ignore: ['**/.*'],
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'technologies',
+        path: `${__dirname}/_data/technologies`,
         ignore: ['**/.*'],
       },
     },
@@ -53,6 +61,8 @@ module.exports = {
       },
     },
     'gatsby-transformer-json',
+    'gatsby-transformer-remark',
     'gatsby-transformer-sharp',
+    'gatsby-transformer-yaml',
   ],
 };

@@ -7,6 +7,7 @@ import { Container } from './Container';
 
 const Header = styled.header`
   background: #825a84;
+  margin-top: 20px;
 `;
 
 const HeaderContainer = styled(Container)`
@@ -45,7 +46,7 @@ const NavItem = styled.li`
 `;
 
 const NavLink = styled(Link)`
-  color: rgba(242, 238, 255, 0.7);
+  color: rgba(242, 238, 255, 0.93);
   font-family: 'Roboto', sans-serif;
   font-size: 0.9rem;
   -moz-osx-font-smoothing: grayscale;

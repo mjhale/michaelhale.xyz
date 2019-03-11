@@ -5,12 +5,13 @@ import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 import { graphql, StaticQuery } from 'gatsby';
 
+import Footer from './Footer';
 import Header from './Header';
 import { Container } from './Container';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background-color: #F5F3EC;
+    background-color: #201325;
     font-feature-settings: "pnum";
     -webkit-font-feature-settings: "pnum";
     font-variant-numeric: proportional-nums;
@@ -21,9 +22,10 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const ChildrenContainer = styled(Container)`
-  padding-bottom: 1rem;
-  padding-top: 1rem;
+const StyledChildren = styled.main`
+  background-color: #f5f3ec;
+  padding-bottom: 1.5rem;
+  padding-top: 1.5rem;
 `;
 
 const Layout = ({ children }) => (
@@ -47,7 +49,10 @@ const Layout = ({ children }) => (
           <html lang="en" />
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title} />
-        <ChildrenContainer>{children}</ChildrenContainer>
+        <StyledChildren>
+          <Container>{children}</Container>
+        </StyledChildren>
+        <Footer />
       </>
     )}
   />

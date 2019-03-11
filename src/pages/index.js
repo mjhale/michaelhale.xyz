@@ -9,6 +9,12 @@ import ProjectCard from '../components/ProjectCard';
 
 const StyledAbout = styled.div``;
 
+const StyledAboutSection = styled.section`
+  display: flex;
+  justify-content: space-between;
+  margin: 1.5rem 0;
+`;
+
 const StyledCity = styled.div`
   height: auto;
   mask-image: url(${props => props.mask || 'none'});
@@ -38,9 +44,7 @@ const StyledProjectCardList = styled.div`
   margin: 0;
 `;
 
-const StyledSection = styled.section`
-  display: flex;
-  justify-content: space-between;
+const StyledProjectsSection = styled.section`
   margin: 1.5rem 0;
 `;
 
@@ -57,7 +61,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <StyledSection>
+      <StyledAboutSection>
         <StyledAbout>
           <StyledHeading>
             frontend <StyledSmallText>engineer</StyledSmallText>
@@ -69,34 +73,36 @@ const IndexPage = ({ data }) => {
         <StyledCity mask={cityMask.publicURL}>
           <Img fluid={cityImage.childImageSharp.fluid} />
         </StyledCity>
-      </StyledSection>
+      </StyledAboutSection>
 
-      <StyledHeading>
-        Recent <StyledSmallText>Projects</StyledSmallText>
-      </StyledHeading>
+      <StyledProjectsSection>
+        <StyledHeading>
+          Recent <StyledSmallText>Projects</StyledSmallText>
+        </StyledHeading>
 
-      <StyledProjectCardList>
-        {projects.map(project => {
-          const {
-            coverImage,
-            summary,
-            technologyTags,
-            title,
-          } = project.node.frontmatter;
-          const { id } = project.node;
+        <StyledProjectCardList>
+          {projects.map(project => {
+            const {
+              coverImage,
+              summary,
+              technologyTags,
+              title,
+            } = project.node.frontmatter;
+            const { id } = project.node;
 
-          return (
-            <ProjectCard
-              coverImage={coverImage}
-              key={id}
-              title={title}
-              summary={summary}
-              technologies={technologies}
-              technologyTags={technologyTags}
-            />
-          );
-        })}
-      </StyledProjectCardList>
+            return (
+              <ProjectCard
+                coverImage={coverImage}
+                key={id}
+                title={title}
+                summary={summary}
+                technologies={technologies}
+                technologyTags={technologyTags}
+              />
+            );
+          })}
+        </StyledProjectCardList>
+      </StyledProjectsSection>
     </Layout>
   );
 };

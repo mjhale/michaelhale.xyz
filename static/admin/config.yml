@@ -40,7 +40,7 @@ collections:
           valueField: 'title',
           widget: 'relation',
         }
-      - { label: 'Summary', name: summary', widget: 'markdown' }
+      - { label: 'Summary', name: 'summary', widget: 'markdown' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
 
   - label: 'Technologies'

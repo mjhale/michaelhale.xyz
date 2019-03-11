@@ -12,6 +12,7 @@ const StyledContent = styled.div`
 
 const StyledHeader = styled.h2`
   color: #fff;
+  font-size: 1.175rem;
 `;
 
 const StyledImage = styled(Img)`
@@ -83,7 +84,7 @@ const ProjectCard = props => {
             );
 
             const {
-              iconImage: technologyIconImage,
+              iconImage: { publicURL: technologyIconImage },
               id: technologyId,
               title: technologyTitle,
             } = technology.node;
@@ -120,7 +121,9 @@ ProjectCard.propTypes = {
   technologies: PropTypes.arrayOf(
     PropTypes.shape({
       node: PropTypes.shape({
-        iconImage: PropTypes.string.isRequired,
+        iconImage: PropTypes.shape({
+          publicURL: PropTypes.string.isRequired,
+        }).isRequired,
         id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
       }),

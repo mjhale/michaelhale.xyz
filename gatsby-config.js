@@ -42,7 +42,6 @@ module.exports = {
       options: {
         name: 'projects',
         path: `${__dirname}/_data/projects`,
-        ignore: ['**/.*'],
       },
     },
     {
@@ -50,7 +49,6 @@ module.exports = {
       options: {
         name: 'technologies',
         path: `${__dirname}/_data/technologies`,
-        ignore: ['**/.*'],
       },
     },
     {
@@ -61,7 +59,19 @@ module.exports = {
       },
     },
     'gatsby-transformer-json',
-    'gatsby-transformer-remark',
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 1400,
+            },
+          },
+        ],
+      },
+    },
     'gatsby-transformer-sharp',
     'gatsby-transformer-yaml',
   ],

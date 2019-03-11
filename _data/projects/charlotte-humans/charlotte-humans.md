@@ -1,7 +1,7 @@
 ---
 date: 2018-01-02T03:07:14.847Z
 title: Charlotte Humans
-coverImage: /assets/dc-protest.jpg
+coverImage: dc-protest.jpg
 technologyTags:
   - JavaScript
   - WordPress

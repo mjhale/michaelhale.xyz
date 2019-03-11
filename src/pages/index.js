@@ -16,20 +16,35 @@ const StyledSmallText = styled.span`
 `;
 
 const IndexPage = ({ data }) => {
-  const { edges: technologies } = data.allTechnologiesJson;
+  const { edges: projects } = data.allMarkdownRemark;
+  const { edges: technologies } = data.allTechnologiesYaml;
 
   return (
     <Layout>
       <StyledHeading>
         Featured <StyledSmallText>Projects</StyledSmallText>
       </StyledHeading>
-      <ProjectCard
-        description="A progressive advocacy group in the Southeast region, Charlotte Humans sought to create an online presence which focused on efficiently mobilizing supporters to garner interest on key issues of the day."
-        image={data.imageCharlotteHumansPreview.childImageSharp.fluid}
-        name="Charlotte Humans"
-        technologies={technologies}
-        technologyTags={['javascript', 'php', 'wordpress']}
-      />
+
+      {projects.map(project => {
+        const {
+          coverImage,
+          summary,
+          technologyTags,
+          title,
+        } = project.node.frontmatter;
+        const { id } = project.node;
+
+        return (
+          <ProjectCard
+            coverImage={coverImage}
+            key={id}
+            title={title}
+            summary={summary}
+            technologies={technologies}
+            technologyTags={technologyTags}
+          />
+        );
+      })}
     </Layout>
   );
 };
@@ -38,28 +53,40 @@ IndexPage.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
-export const query = graphql`
+export default IndexPage;
+
+export const pageQuery = graphql`
   query {
-    imageCharlotteHumansPreview: file(
-      relativePath: { eq: "charlotte-humans/dc-protest.jpg" }
-    ) {
-      childImageSharp {
-        fluid(maxWidth: 1000) {
-          ...GatsbyImageSharpFluid
+    allTechnologiesYaml {
+      edges {
+        node {
+          id
+          title
+          iconImage
         }
       }
     }
-    allTechnologiesJson {
+    allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/projects/" } }) {
+      totalCount
       edges {
         node {
-          iconImage {
-            publicURL
+          id
+          frontmatter {
+            title
+            coverImage {
+              publicURL
+              childImageSharp {
+                fluid(maxWidth: 400, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            date(formatString: "DD MMMM, YYYY")
+            summary
+            technologyTags
           }
-          name
         }
       }
     }
   }
 `;
-
-export default IndexPage;

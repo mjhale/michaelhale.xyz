@@ -29,6 +29,13 @@ module.exports = {
     'gatsby-plugin-netlify-cms',
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
+    {
+      resolve: 'gatsby-plugin-segment-js',
+      options: {
+        prodKey: '6GdJD6Feihv0Vyw8xrNpLqYCfZfXC9nV',
+        trackPage: true,
+      },
+    },
     'gatsby-plugin-sharp',
     'gatsby-plugin-styled-components',
     {

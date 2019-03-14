@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 const StyledContent = styled.div`
   font-size: 0.9rem;
+  height: 100%;
   padding: 1.5rem 1rem 1rem;
   position: relative;
   z-index: 10;
@@ -45,6 +46,7 @@ const StyledProjectCard = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.04);
   height: auto;
   max-width: 310px;
+  min-height: 275px;
   overflow: hidden;
   position: relative;
 `;
@@ -55,9 +57,13 @@ const StyledSummary = styled.div`
 `;
 
 const StyledTechnologies = styled.ul`
+  bottom: 1rem;
   display: flex;
+  height: 40px;
+  left: 0.7525rem;
   list-style: none;
-  margin: 1.5rem 0 0.5rem;
+  margin: 0;
+  position: absolute;
 `;
 
 const StyledTechnology = styled.li`

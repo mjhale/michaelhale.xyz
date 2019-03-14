@@ -12,7 +12,6 @@ const StyledAbout = styled.div``;
 const StyledAboutSection = styled.section`
   display: flex;
   justify-content: space-between;
-  margin: 1.5rem 0;
 `;
 
 const StyledCity = styled.div`
@@ -22,7 +21,8 @@ const StyledCity = styled.div`
   mask-repeat: no-repeat;
   mask-size: contain;
   mask-type: luminance;
-  max-width: 400px;
+  margin-left: 1.125rem;
+  max-width: 320px;
   object-fit: cover;
   width: 100%;
 `;
@@ -45,7 +45,7 @@ const StyledProjectCardList = styled.div`
 `;
 
 const StyledProjectsSection = styled.section`
-  margin: 1.5rem 0;
+  margin: 1.25rem 0;
 `;
 
 const StyledSmallText = styled.span`
@@ -69,9 +69,19 @@ const IndexPage = ({ data }) => {
           <StyledParagraph>
             Michael Hale is a frontend engineer and designer in Charlotte, N.C.
           </StyledParagraph>
+          <StyledParagraph>
+            He has experience with JavaScript, Elixir, and Ruby as well as
+            React, Phoenix, and Rails. For more than ten years he has partnered
+            with clients who share a commitment to creativity, integrity, and
+            craft.
+          </StyledParagraph>
         </StyledAbout>
         <StyledCity mask={cityMask.publicURL}>
-          <Img fluid={cityImage.childImageSharp.fluid} />
+          <Img
+            alt="The skyline of Charlotte, NC on a sunny day."
+            backgroundColor="#f7f5f6"
+            fluid={cityImage.childImageSharp.fluid}
+          />
         </StyledCity>
       </StyledAboutSection>
 
@@ -126,8 +136,8 @@ export const pageQuery = graphql`
               publicURL
               relativePath
               childImageSharp {
-                fluid(maxWidth: 400, quality: 100) {
-                  ...GatsbyImageSharpFluid
+                fluid(maxWidth: 400) {
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }
@@ -153,7 +163,7 @@ export const pageQuery = graphql`
       publicURL
       childImageSharp {
         fluid(maxWidth: 400, maxHeight: 252, quality: 100) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_withWebp_noBase64
         }
       }
     }

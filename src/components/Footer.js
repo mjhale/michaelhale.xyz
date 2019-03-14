@@ -12,11 +12,12 @@ const StyledFooter = styled.footer`
   flex-grow: 1;
   font-size: 0.8rem;
   justify-content: space-between;
-  padding-bottom: 1.5rem;
-  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
 `;
 
 const StyledLink = styled.li`
+  margin-bottom: 0;
   padding-left: 0.75rem;
 `;
 

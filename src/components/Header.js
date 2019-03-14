@@ -7,7 +7,7 @@ import { Container } from './Container';
 
 const Header = styled.header`
   background: #825a84;
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 const HeaderContainer = styled(Container)`

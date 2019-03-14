@@ -44,7 +44,7 @@ const StyledImageOverlay = styled.div`
 const StyledProjectCard = styled.div`
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.04);
-  height: auto;
+  height: 100%;
   max-width: 310px;
   min-height: 275px;
   overflow: hidden;

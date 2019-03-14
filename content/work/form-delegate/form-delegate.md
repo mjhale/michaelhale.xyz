@@ -1,6 +1,7 @@
 ---
 date: 2018-01-02T03:07:14.847Z
 title: Form Delegate
+path: /work/form-delegate
 coverImage: person-browsing-computer.jpg
 technologyTags:
   - JavaScript

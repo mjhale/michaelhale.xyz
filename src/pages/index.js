@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
+import { Link } from 'gatsby';
 
 import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
@@ -42,6 +43,11 @@ const StyledProjectCardList = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0;
+`;
+
+const StyledProjectLink = styled(Link)`
+  display: block;
+  text-decoration: none;
 `;
 
 const StyledProjectsSection = styled.section`
@@ -94,6 +100,7 @@ const IndexPage = ({ data }) => {
           {projects.map(project => {
             const {
               coverImage,
+              path,
               summary,
               technologyTags,
               title,
@@ -101,14 +108,15 @@ const IndexPage = ({ data }) => {
             const { id } = project.node;
 
             return (
-              <ProjectCard
-                coverImage={coverImage}
-                key={id}
-                title={title}
-                summary={summary}
-                technologies={technologies}
-                technologyTags={technologyTags}
-              />
+              <StyledProjectLink key={id} to={path}>
+                <ProjectCard
+                  coverImage={coverImage}
+                  title={title}
+                  summary={summary}
+                  technologies={technologies}
+                  technologyTags={technologyTags}
+                />
+              </StyledProjectLink>
             );
           })}
         </StyledProjectCardList>
@@ -125,13 +133,15 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/projects/" } }) {
+    allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/work/" } }) {
       totalCount
       edges {
         node {
           id
           frontmatter {
             title
+            path
+            date(formatString: "DD MMMM, YYYY")
             coverImage {
               publicURL
               relativePath
@@ -141,7 +151,6 @@ export const pageQuery = graphql`
                 }
               }
             }
-            date(formatString: "DD MMMM, YYYY")
             summary
             technologyTags
           }

@@ -93,7 +93,7 @@ const IndexPage = ({ data }) => {
 
       <StyledProjectsSection>
         <StyledHeading>
-          Recent <StyledSmallText>Projects</StyledSmallText>
+          Recent <StyledSmallText>Work</StyledSmallText>
         </StyledHeading>
 
         <StyledProjectCardList>

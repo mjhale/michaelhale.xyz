@@ -5,7 +5,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   const workTemplate = path.resolve('src/templates/workTemplate.js');
 
-  // Add page routes for portfolio markdown files
+  // Add page routes for work markdown files
   return graphql(`
     {
       allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/work/" } }) {

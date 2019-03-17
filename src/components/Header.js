@@ -82,13 +82,7 @@ const HeaderComponent = ({ siteTitle }) => (
         <NavList>
           <MenuToggle aria-expanded="false">Menu</MenuToggle>
           <NavItem>
-            <NavLink to="/portfolio/">Portfolio</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/services/">Services</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/about/">About</NavLink>
+            <NavLink to="/work/">Work</NavLink>
           </NavItem>
           <NavItem>
             <NavLink to="/contact/">Contact</NavLink>

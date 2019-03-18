@@ -29,6 +29,7 @@ const StyledCity = styled.div`
 `;
 
 const StyledHeading = styled.h1`
+  font-display: swap;
   font-family: 'Playfair Display', serif;
   font-size: 1.675rem;
   letter-spacing: 0.025rem;
@@ -55,6 +56,7 @@ const StyledProjectsSection = styled.section`
 `;
 
 const StyledSmallText = styled.span`
+  font-display: swap;
   font-family: 'Roboto', sans-serif;
   font-size: 1.525rem;
   font-weight: normal;

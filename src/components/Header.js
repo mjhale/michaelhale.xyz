@@ -19,6 +19,7 @@ const HeaderContainer = styled(Container)`
 
 const Logo = styled.h1`
   display: inline;
+  font-display: swap;
   font-family: 'Abril Fatface', cursive;
   font-weight: normal;
   font-size: 48px;
@@ -47,6 +48,7 @@ const NavItem = styled.li`
 
 const NavLink = styled(Link)`
   color: rgba(242, 238, 255, 0.93);
+  font-display: swap;
   font-family: 'Roboto', sans-serif;
   font-size: 0.9rem;
   -moz-osx-font-smoothing: grayscale;

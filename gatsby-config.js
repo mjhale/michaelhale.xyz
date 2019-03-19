@@ -35,6 +35,15 @@ module.exports = {
         trackPage: true,
       },
     },
+    {
+      resolve: 'gatsby-plugin-sentry',
+      options: {
+        dsn: 'https://e9d2a8e515e6493e85e9ab24471bf11c@sentry.io/1414969',
+        environment: process.env.NODE_ENV,
+        enabled: (() =>
+          ['production', 'stage'].indexOf(process.env.NODE_ENV) !== -1)(),
+      },
+    },
     'gatsby-plugin-sharp',
     'gatsby-plugin-styled-components',
     {

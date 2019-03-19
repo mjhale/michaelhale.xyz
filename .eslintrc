@@ -1,29 +1,22 @@
 {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "node": true,
-        "es6": true
-    },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
-    ],
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "ecmaVersion": 2018
-    },
-    "plugins": [
-        "react",
-        "jsx-a11y",
-        "import"
-    ],
-    "rules": {
-        "no-console": "off",
-        "strict": [
-            "error",
-            "global"
-        ],
-        "curly": "warn"
-    }
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "node": true,
+    "es6": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "globals": {
+    "Sentry": "readonly"
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "plugins": ["react", "jsx-a11y", "import"],
+  "rules": {
+    "no-console": "off",
+    "strict": ["error", "global"],
+    "curly": "warn"
+  }
 }

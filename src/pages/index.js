@@ -63,9 +63,7 @@ const StyledSmallText = styled.span`
 `;
 
 const IndexPage = ({ data }) => {
-  const { edges: projects } = data.allMarkdownRemark;
-  const { edges: technologies } = data.allTechnologiesYaml;
-  const { cityImage, cityMask } = data;
+  const { cityImage, cityMask, recentWork, technologies } = data;
 
   return (
     <Layout>
@@ -92,35 +90,23 @@ const IndexPage = ({ data }) => {
           />
         </StyledCity>
       </StyledAboutSection>
-
       <StyledProjectsSection>
         <StyledHeading>
           Recent <StyledSmallText>Work</StyledSmallText>
         </StyledHeading>
 
         <StyledProjectCardList>
-          {projects.map(project => {
-            const {
-              coverImage,
-              path,
-              summary,
-              technologyTags,
-              title,
-            } = project.node.frontmatter;
-            const { id } = project.node;
-
-            return (
-              <StyledProjectLink key={id} to={path}>
-                <ProjectCard
-                  coverImage={coverImage}
-                  title={title}
-                  summary={summary}
-                  technologies={technologies}
-                  technologyTags={technologyTags}
-                />
-              </StyledProjectLink>
-            );
-          })}
+          {recentWork.edges.map(({ node: { frontmatter: column } }, index) => (
+            <StyledProjectLink key={index} to={column.path}>
+              <ProjectCard
+                coverImage={column.coverImage}
+                title={column.title}
+                summary={column.summary}
+                technologies={technologies.edges}
+                technologyTags={column.technologyTags}
+              />
+            </StyledProjectLink>
+          ))}
         </StyledProjectCardList>
       </StyledProjectsSection>
     </Layout>
@@ -128,48 +114,18 @@ const IndexPage = ({ data }) => {
 };
 
 IndexPage.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.shape({
+    cityImage: PropTypes.object.isRequired,
+    cityMask: PropTypes.object.isRequired,
+    recentWork: PropTypes.object.isRequired,
+    technologies: PropTypes.object.isRequired,
+  }).isRequired,
 };
 
 export default IndexPage;
 
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/work/" } }) {
-      totalCount
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            path
-            date(formatString: "DD MMMM, YYYY")
-            coverImage {
-              publicURL
-              relativePath
-              childImageSharp {
-                fluid(maxWidth: 400) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
-            }
-            summary
-            technologyTags
-          }
-        }
-      }
-    }
-    allTechnologiesYaml {
-      edges {
-        node {
-          id
-          title
-          iconImage {
-            publicURL
-          }
-        }
-      }
-    }
     cityImage: file(relativePath: { eq: "charlotte-skyline.jpg" }) {
       publicURL
       childImageSharp {
@@ -180,6 +136,40 @@ export const pageQuery = graphql`
     }
     cityMask: file(relativePath: { eq: "brush-mask.svg" }) {
       publicURL
+    }
+    recentWork: allMarkdownRemark(
+      filter: { fileAbsolutePath: { regex: "/work/" } }
+    ) {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            coverImage {
+              childImageSharp {
+                fluid(maxWidth: 400) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+            path
+            summary
+            technologyTags
+            title
+          }
+        }
+      }
+    }
+    technologies: allTechnologiesYaml {
+      edges {
+        node {
+          id
+          title
+          iconImage {
+            publicURL
+          }
+        }
+      }
     }
   }
 `;

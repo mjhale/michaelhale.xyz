@@ -7,6 +7,7 @@ import { graphql, StaticQuery } from 'gatsby';
 
 import Footer from './Footer';
 import Header from './Header';
+import SkipNavLink from './SkipNavLink';
 import { Container } from './Container';
 
 const GlobalStyle = createGlobalStyle`
@@ -48,8 +49,9 @@ const Layout = ({ children }) => (
         >
           <html lang="en" />
         </Helmet>
+        <SkipNavLink contentId="content" />
         <Header siteTitle={data.site.siteMetadata.title} />
-        <StyledChildren>
+        <StyledChildren id="content">
           <Container>{children}</Container>
         </StyledChildren>
         <Footer />

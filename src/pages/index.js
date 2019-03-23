@@ -63,7 +63,7 @@ const StyledSmallText = styled.span`
 `;
 
 const IndexPage = ({ data }) => {
-  const { cityImage, cityMask, recentWork, technologies } = data;
+  const { cityImage, cityMask, recentWork } = data;
 
   return (
     <Layout>
@@ -102,8 +102,7 @@ const IndexPage = ({ data }) => {
                 coverImage={column.coverImage}
                 title={column.title}
                 summary={column.summary}
-                technologies={technologies.edges}
-                technologyTags={column.technologyTags}
+                technologies={column.technologies}
               />
             </StyledProjectLink>
           ))}
@@ -118,7 +117,6 @@ IndexPage.propTypes = {
     cityImage: PropTypes.object.isRequired,
     cityMask: PropTypes.object.isRequired,
     recentWork: PropTypes.object.isRequired,
-    technologies: PropTypes.object.isRequired,
   }).isRequired,
 };
 
@@ -154,19 +152,14 @@ export const pageQuery = graphql`
             }
             path
             summary
-            technologyTags
+            technologies {
+              iconImage {
+                publicURL
+              }
+              id
+              title
+            }
             title
-          }
-        }
-      }
-    }
-    technologies: allTechnologiesYaml {
-      edges {
-        node {
-          id
-          title
-          iconImage {
-            publicURL
           }
         }
       }

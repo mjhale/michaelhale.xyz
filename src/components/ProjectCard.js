@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
+import TechnologyIconList from './TechnologyIconList';
+
 const StyledContent = styled.div`
   font-size: 0.9rem;
   height: 100%;
@@ -56,57 +58,15 @@ const StyledSummary = styled.div`
   font-size: 0.845rem;
 `;
 
-const StyledTechnologies = styled.ul`
-  bottom: 1rem;
-  display: flex;
-  height: 40px;
-  left: 0.7525rem;
-  list-style: none;
-  margin: 0;
-  position: absolute;
-`;
-
-const StyledTechnology = styled.li`
-  margin: 0;
-`;
-
-const StyledTechnologyImage = styled.img`
-  display: block;
-  margin: 0;
-`;
-
 const ProjectCard = props => {
-  const { coverImage, summary, technologies, technologyTags, title } = props;
+  const { coverImage, summary, technologies, title } = props;
 
   return (
     <StyledProjectCard>
       <StyledContent>
         <StyledHeader>{title}</StyledHeader>
         <StyledSummary>{summary}</StyledSummary>
-        <StyledTechnologies>
-          {technologyTags.map(technologyName => {
-            const technology = technologies.find(
-              t => t.node.title.toLowerCase() === technologyName.toLowerCase()
-            );
-
-            const {
-              iconImage: { publicURL: technologyIconImage },
-              id: technologyId,
-              title: technologyTitle,
-            } = technology.node;
-
-            return (
-              <StyledTechnology key={technologyId}>
-                <StyledTechnologyImage
-                  alt={technologyTitle}
-                  height="40"
-                  src={technologyIconImage}
-                  width="40"
-                />
-              </StyledTechnology>
-            );
-          })}
-        </StyledTechnologies>
+        <TechnologyIconList technologies={technologies} />
       </StyledContent>
       <StyledImage
         fluid={coverImage.childImageSharp.fluid}
@@ -124,18 +84,7 @@ ProjectCard.propTypes = {
     }),
   }).isRequired,
   summary: PropTypes.string.isRequired,
-  technologies: PropTypes.arrayOf(
-    PropTypes.shape({
-      node: PropTypes.shape({
-        iconImage: PropTypes.shape({
-          publicURL: PropTypes.string.isRequired,
-        }).isRequired,
-        id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-      }),
-    }).isRequired
-  ).isRequired,
-  technologyTags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  technologies: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
 };
 

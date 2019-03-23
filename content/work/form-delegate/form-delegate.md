@@ -3,7 +3,7 @@ date: 2018-01-02T03:07:14.847Z
 title: Form Delegate
 path: /work/form-delegate
 coverImage: person-browsing-computer.jpg
-technologyTags:
+technologies:
   - JavaScript
 summary: >-
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

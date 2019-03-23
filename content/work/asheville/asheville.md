@@ -3,7 +3,7 @@ date: 2019-01-02T03:07:14.847Z
 title: Asheville
 path: /work/asheville
 coverImage: asheville-downtown-panorama.jpg
-technologyTags:
+technologies:
   - JavaScript
 summary: >-
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

@@ -1,6 +1,6 @@
 module.exports = {
-  siteMetadata: {
-    title: 'Michael Hale',
+  mapping: {
+    'MarkdownRemark.frontmatter.technologies': 'TechnologiesYaml.title',
   },
   plugins: [
     {
@@ -90,4 +90,7 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-transformer-yaml',
   ],
+  siteMetadata: {
+    title: 'Michael Hale',
+  },
 };

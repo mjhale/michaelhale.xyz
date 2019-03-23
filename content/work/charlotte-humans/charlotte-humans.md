@@ -3,7 +3,7 @@ date: 2018-01-02T03:07:14.847Z
 title: Charlotte Humans
 path: /work/charlotte-humans
 coverImage: dc-protest.jpg
-technologyTags:
+technologies:
   - JavaScript
   - WordPress
 summary: >-

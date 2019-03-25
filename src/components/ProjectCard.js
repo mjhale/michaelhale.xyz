@@ -51,11 +51,23 @@ const StyledProjectCard = styled.div`
   min-height: 275px;
   overflow: hidden;
   position: relative;
+  transition-duration: 0.1s;
+  transition-property: box-shadow;
+
+  &:hover {
+    box-shadow: 0 0 0 1px #31312f, 0 0 1vw #573b61;
+  }
 `;
 
 const StyledSummary = styled.div`
   color: #fff;
   font-size: 0.845rem;
+`;
+
+const StyledIconList = styled.div`
+  bottom: 1rem;
+  left: 0.7525rem;
+  position: absolute;
 `;
 
 const ProjectCard = props => {
@@ -66,7 +78,9 @@ const ProjectCard = props => {
       <StyledContent>
         <StyledHeader>{title}</StyledHeader>
         <StyledSummary>{summary}</StyledSummary>
-        <TechnologyIconList technologies={technologies} />
+        <StyledIconList>
+          <TechnologyIconList technologies={technologies} />
+        </StyledIconList>
       </StyledContent>
       <StyledImage
         fluid={coverImage.childImageSharp.fluid}

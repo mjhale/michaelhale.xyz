@@ -3,13 +3,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledTechnologies = styled.ul`
-  bottom: 1rem;
   display: flex;
   height: 40px;
-  left: 0.7525rem;
   list-style: none;
   margin: 0;
-  position: absolute;
 `;
 
 const StyledTechnology = styled.li`

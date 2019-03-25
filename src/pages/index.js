@@ -137,6 +137,8 @@ export const pageQuery = graphql`
     }
     recentWork: allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "/work/" } }
+      limit: 3
+      sort: { order: DESC, fields: [frontmatter___date] }
     ) {
       totalCount
       edges {

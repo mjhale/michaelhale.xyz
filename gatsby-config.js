@@ -1,8 +1,24 @@
 module.exports = {
   mapping: {
-    'MarkdownRemark.frontmatter.technologies': 'TechnologiesYaml.title',
+    'Mdx.frontmatter.technologies': 'TechnologiesYaml.title',
   },
   plugins: [
+    {
+      resolve: 'gatsby-mdx',
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              extensions: ['.mdx', '.md'],
+              linkImagesToOriginal: false,
+              maxWidth: 800,
+              sizeByPixelDensity: true,
+            },
+          },
+        ],
+      },
+    },
     {
       resolve: 'gatsby-plugin-eslint',
       options: {
@@ -32,7 +48,6 @@ module.exports = {
         color: '#a78ba9',
       },
     },
-
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
     {
@@ -81,19 +96,6 @@ module.exports = {
       },
     },
     'gatsby-transformer-json',
-    {
-      resolve: 'gatsby-transformer-remark',
-      options: {
-        plugins: [
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 1400,
-            },
-          },
-        ],
-      },
-    },
     'gatsby-transformer-sharp',
     'gatsby-transformer-yaml',
   ],

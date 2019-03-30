@@ -135,7 +135,7 @@ export const pageQuery = graphql`
     cityMask: file(relativePath: { eq: "brush-mask.svg" }) {
       publicURL
     }
-    recentWork: allMarkdownRemark(
+    recentWork: allMdx(
       filter: { fileAbsolutePath: { regex: "/work/" } }
       limit: 3
       sort: { order: DESC, fields: [frontmatter___date] }

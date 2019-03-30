@@ -8,7 +8,7 @@ exports.createPages = ({ graphql, actions }) => {
   // Add page routes for work markdown files
   return graphql(`
     {
-      allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/work/" } }) {
+      allMdx(filter: { fileAbsolutePath: { regex: "/work/" } }) {
         edges {
           node {
             frontmatter {
@@ -23,7 +23,7 @@ exports.createPages = ({ graphql, actions }) => {
       return Promise.reject(result.errors);
     }
 
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    result.data.allMdx.edges.forEach(({ node }) => {
       createPage({
         path: node.frontmatter.path,
         component: workTemplate,

@@ -3,50 +3,86 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
-import { MDXTag } from '@mdx-js/tag';
 
 import Layout from '../components/Layout';
 import TechnologyIconList from '../components/TechnologyIconList';
 
-const StyledScreenshot = styled.div`
-  background-color: ${props => props.offset || 'transparent'};
-  padding: 1.5rem;
-
-  & p {
-    margin: 0;
-  }
+const StyledIconList = styled.div`
+  margin: 0.435rem 0;
 `;
 
-const ProjectDate = styled.p`
+const StyledProjectDate = styled.p`
   color: #777;
   font-feature-settings: 'onum' 1;
   font-size: 0.9375rem;
   margin: 0;
 `;
 
+const StyledProjectRole = styled.p`
+  font-size: 0.9375rem;
+  margin: 0.25rem 0;
+`;
+
+const StyledProjectTitle = styled.h1`
+  font-size: 1.9375rem;
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+`;
+
+const StyledScreenshot = styled.div`
+  background-color: ${props => props.offsetColor || 'transparent'};
+  background-image: ${props =>
+    props.backgroundImage ? `url(${props.backgroundImage})` : 'none'};
+  background-repeat: ${props =>
+    props.backgroundImage ? 'repeat' : 'no-repeat'};
+  margin-bottom: 1.45rem;
+  overflow: hidden;
+  padding: 2rem;
+
+  & .gatsby-resp-image-wrapper {
+    box-shadow: 0 0.5vw 2.5vw rgba(50, 50, 50, 0.15),
+      0 2vw 4.75vw 1.25vw ${props => props.shadowColor || 'transparent'};
+  }
+
+  & .gatsby-resp-image-wrapper img {
+    outline: 1px solid rgba(50, 50, 50, 0.15);
+    outline-offset: -1px;
+  }
+
+  & p {
+    margin: 0;
+  }
+`;
+
 const WorkTemplate = ({ data }) => {
   const {
+    fractalBackground,
     project: {
       code: { body },
       frontmatter,
     },
   } = data;
 
+  const Screenshot = props => (
+    <StyledScreenshot
+      backgroundImage={fractalBackground.publicURL}
+      {...props}
+    />
+  );
+
   const mdxScope = {
-    MDXTag: MDXTag,
-    React: React,
-    Screenshot: StyledScreenshot,
+    Screenshot: Screenshot,
   };
 
   return (
     <Layout>
-      <ProjectDate>{frontmatter.date}</ProjectDate>
-      <h1>{frontmatter.title}</h1>
-      <p>{frontmatter.subtitle}</p>
+      <StyledProjectDate>{frontmatter.date}</StyledProjectDate>
+      <StyledProjectTitle>{frontmatter.title}</StyledProjectTitle>
+      <StyledProjectRole>{frontmatter.role}</StyledProjectRole>
 
-      <p>{frontmatter.role}</p>
-
-      <TechnologyIconList technologies={frontmatter.technologies} />
+      <StyledIconList>
+        <TechnologyIconList technologies={frontmatter.technologies} />
+      </StyledIconList>
 
       <MDXRenderer scope={mdxScope} style={frontmatter.style}>
         {body}
@@ -57,6 +93,7 @@ const WorkTemplate = ({ data }) => {
 
 WorkTemplate.propTypes = {
   data: PropTypes.shape({
+    fractalBackground: PropTypes.object.isRequired,
     project: PropTypes.shape({
       frontmatter: PropTypes.shape({
         coverImage: PropTypes.object,
@@ -80,6 +117,9 @@ export default WorkTemplate;
 
 export const pageQuery = graphql`
   query($path: String!) {
+    fractalBackground: file(relativePath: { eq: "fractal-noise.svg" }) {
+      publicURL
+    }
     project: mdx(frontmatter: { path: { eq: $path } }) {
       code {
         body

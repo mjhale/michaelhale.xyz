@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import { Link } from 'gatsby';
 
-import Layout from '../components/Layout';
-import ProjectCard from '../components/ProjectCard';
+import Layout from 'src/components/Layout';
+import ProjectCard from 'src/components/ProjectCard';
 
 const StyledAbout = styled.div``;
 

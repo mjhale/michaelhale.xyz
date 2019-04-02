@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { Form, Formik } from 'formik';
 
-import encode from '../utils/encode';
+import encode from 'src/utils/encode';
 
-import Input from '../components/Input';
-import Layout from '../components/Layout';
+import Input from 'src/components/Input';
+import Layout from 'src/components/Layout';
 
 const StyledContactContent = styled.div`
   position: relative;

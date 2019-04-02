@@ -4,8 +4,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
 
-import Layout from '../components/Layout';
-import TechnologyIconList from '../components/TechnologyIconList';
+import Layout from 'src/components/Layout';
+import TechnologyIconList from 'src/components/TechnologyIconList';
 
 const StyledIconList = styled.div`
   margin: 0.435rem 0;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
-import TechnologyIconList from './TechnologyIconList';
+import TechnologyIconList from 'src/components/TechnologyIconList';
 
 const StyledContent = styled.div`
   font-size: 0.9rem;

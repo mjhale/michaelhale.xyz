@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 import { graphql, StaticQuery } from 'gatsby';
 
-import Footer from './Footer';
-import Header from './Header';
-import SkipNavLink from './SkipNavLink';
-import { Container } from './Container';
+import Footer from 'src/components/Footer';
+import Header from 'src/components/Header';
+import SkipNavLink from 'src/components/SkipNavLink';
+import { Container } from 'src/components/Container';
 
 const GlobalStyle = createGlobalStyle`
   body {

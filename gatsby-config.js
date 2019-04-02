@@ -58,6 +58,13 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-root-import',
+      options: {
+        src: `${__dirname}/src`,
+        content: `${__dirname}/content`,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-sentry',
       options: {
         dsn: 'https://e9d2a8e515e6493e85e9ab24471bf11c@sentry.io/1414969',

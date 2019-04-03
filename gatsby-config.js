@@ -8,12 +8,16 @@ module.exports = {
       options: {
         gatsbyRemarkPlugins: [
           {
+            resolve: 'gatsby-remark-relative-images',
+          },
+          {
             resolve: 'gatsby-remark-images',
             options: {
               extensions: ['.mdx', '.md'],
               linkImagesToOriginal: false,
               maxWidth: 800,
               sizeByPixelDensity: true,
+              withWebp: true,
             },
           },
         ],

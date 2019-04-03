@@ -109,6 +109,7 @@ module.exports = {
     'gatsby-transformer-json',
     'gatsby-transformer-sharp',
     'gatsby-transformer-yaml',
+    'gatsby-plugin-netlify',
   ],
   siteMetadata: {
     title: 'Michael Hale',

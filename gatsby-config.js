@@ -4,11 +4,32 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: `${__dirname}/src/images/`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'technologies',
+        path: `${__dirname}/content/technologies`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'work',
+        path: `${__dirname}/content/work`,
+      },
+    },
+    {
       resolve: 'gatsby-mdx',
       options: {
         gatsbyRemarkPlugins: [
           {
-            resolve: 'gatsby-remark-relative-images',
+            resolve: 'gatsby-remark-unwrap-images',
           },
           {
             resolve: 'gatsby-remark-images',
@@ -52,7 +73,6 @@ module.exports = {
         color: '#a78ba9',
       },
     },
-    'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-segment-js',
@@ -85,28 +105,6 @@ module.exports = {
         pathToConfigModule: 'src/utils/typography.js',
       },
     },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'images',
-        path: `${__dirname}/src/images/`,
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'technologies',
-        path: `${__dirname}/content/technologies`,
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'work',
-        path: `${__dirname}/content/work`,
-      },
-    },
-    'gatsby-transformer-json',
     'gatsby-transformer-sharp',
     'gatsby-transformer-yaml',
     'gatsby-plugin-netlify',

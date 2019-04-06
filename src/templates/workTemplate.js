@@ -48,11 +48,15 @@ const StyledScreenshot = styled.div`
     outline: 1px solid rgba(50, 50, 50, 0.15);
     outline-offset: -1px;
   }
-
-  & p {
-    margin: 0;
-  }
 `;
+
+const Screenshot = props => <StyledScreenshot {...props} />;
+
+Screenshot.propTypes = {
+  backgroundImage: PropTypes.string,
+  offsetColor: PropTypes.string,
+  shadowColor: PropTypes.string,
+};
 
 const WorkTemplate = ({ data }) => {
   const {
@@ -63,15 +67,12 @@ const WorkTemplate = ({ data }) => {
     },
   } = data;
 
-  const Screenshot = props => (
-    <StyledScreenshot
-      backgroundImage={fractalBackground.publicURL}
-      {...props}
-    />
+  const MDXScreenshot = props => (
+    <Screenshot background={fractalBackground.publicURL} {...props} />
   );
 
   const mdxScope = {
-    Screenshot: Screenshot,
+    Screenshot: MDXScreenshot,
   };
 
   return (
@@ -84,7 +85,11 @@ const WorkTemplate = ({ data }) => {
         <TechnologyIconList technologies={frontmatter.technologies} />
       </StyledIconList>
 
-      <MDXRenderer scope={mdxScope} style={frontmatter.style}>
+      <MDXRenderer
+        scope={mdxScope}
+        screenshotBackground={fractalBackground}
+        style={frontmatter.style}
+      >
         {body}
       </MDXRenderer>
     </Layout>
@@ -116,7 +121,7 @@ WorkTemplate.propTypes = {
 export default WorkTemplate;
 
 export const pageQuery = graphql`
-  query($path: String!) {
+  query WorkQuery($path: String!) {
     fractalBackground: file(relativePath: { eq: "fractal-noise.svg" }) {
       publicURL
     }

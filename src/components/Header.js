@@ -6,7 +6,7 @@ import { Link } from 'gatsby';
 import { Container } from 'src/components/Container';
 
 const Header = styled.header`
-  background: #825a84;
+  background: ${props => props.headerBackgroundColor};
   margin-top: 10px;
 `;
 
@@ -74,8 +74,8 @@ const NavList = styled.ul`
   margin: 0;
 `;
 
-const HeaderComponent = ({ siteTitle }) => (
-  <Header>
+const HeaderComponent = ({ headerBackgroundColor, siteTitle }) => (
+  <Header headerBackgroundColor={headerBackgroundColor}>
     <HeaderContainer>
       <Logo>
         <LogoLink to="/">{siteTitle}</LogoLink>
@@ -96,6 +96,7 @@ const HeaderComponent = ({ siteTitle }) => (
 );
 
 HeaderComponent.propTypes = {
+  headerBackgroundColor: PropTypes.string.isRequired,
   siteTitle: PropTypes.string.isRequired,
 };
 

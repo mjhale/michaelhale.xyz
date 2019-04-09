@@ -53,7 +53,7 @@ const StyledScreenshot = styled.div`
 const Screenshot = props => <StyledScreenshot {...props} />;
 
 Screenshot.propTypes = {
-  backgroundImage: PropTypes.string,
+  backgroundImage: PropTypes.object,
   offsetColor: PropTypes.string,
   shadowColor: PropTypes.string,
 };
@@ -76,7 +76,10 @@ const WorkTemplate = ({ data }) => {
   };
 
   return (
-    <Layout>
+    <Layout
+      bodyBackgroundColor={frontmatter.style.screenshot_shadow}
+      headerBackgroundColor={frontmatter.style.screenshot_offset}
+    >
       <StyledProjectDate>{frontmatter.date}</StyledProjectDate>
       <StyledProjectTitle>{frontmatter.title}</StyledProjectTitle>
       <StyledProjectRole>{frontmatter.role}</StyledProjectRole>

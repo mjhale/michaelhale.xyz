@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
-import { breakpoints } from 'src/utils/media';
 import useWindowWidth from 'src/hooks/windowWidth';
+import { breakpoints, media } from 'src/utils/media';
 
 const StyledNavItem = styled.li`
   line-height: 1.4;
@@ -35,24 +35,32 @@ const StyledNavLink = styled(Link)`
 `;
 
 const StyledNavList = styled.ul`
-  align-items: center;
-  align-self: flex-end;
   display: ${props => (props.isExpanded ? 'flex' : 'none')};
-  flex-grow: 1;
   list-style: none;
   margin: 0;
+
+  ${media.md`
+    align-items: center;
+    align-self: flex-end;
+    display: flex;
+    flex-grow: 1;
+  `}
 `;
 
 const StyledNavToggle = styled.button`
-  display: ${props => (props.showNavToggle ? 'inline-block' : 'none')};
+  display: ${props => (props.isExpanded ? 'none' : 'inline-block')};
+
+  ${media.md`
+    display: none;
+  `}
 `;
 
-const NavToggle = ({ isExpanded, setIsExpanded, showNavToggle }) => {
+const NavToggle = ({ isExpanded, setIsExpanded }) => {
   return (
     <StyledNavToggle
       aria-expanded={isExpanded}
+      isExpanded={isExpanded}
       onClick={() => setIsExpanded(true)}
-      showNavToggle={showNavToggle}
     >
       Menu
     </StyledNavToggle>
@@ -62,13 +70,13 @@ const NavToggle = ({ isExpanded, setIsExpanded, showNavToggle }) => {
 NavToggle.propTypes = {
   isExpanded: PropTypes.bool.isRequired,
   setIsExpanded: PropTypes.func.isRequired,
-  showNavToggle: PropTypes.bool.isRequired,
 };
 
 const Nav = () => {
+  const [isExpanded, setIsExpanded] = useState(null);
+
   let windowWidth = useWindowWidth();
   let isSmallDevice = windowWidth <= breakpoints.sm;
-  const [isExpanded, setIsExpanded] = useState(true);
 
   useEffect(() => {
     if (isSmallDevice) {
@@ -76,15 +84,11 @@ const Nav = () => {
     } else {
       setIsExpanded(true);
     }
-  }, [windowWidth]);
+  }, [isSmallDevice]);
 
   return (
     <nav aria-label="Main">
-      <NavToggle
-        isExpanded={isExpanded}
-        setIsExpanded={setIsExpanded}
-        showNavToggle={isSmallDevice && !isExpanded}
-      />
+      <NavToggle isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
       <StyledNavList isExpanded={isExpanded}>
         <StyledNavItem>
           <StyledNavLink to="/work/">Work</StyledNavLink>

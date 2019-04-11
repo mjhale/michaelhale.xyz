@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import { Link } from 'gatsby';
 
+import { media } from 'src/utils/media';
+
 import Layout from 'src/components/Layout';
 import ProjectCard from 'src/components/ProjectCard';
 
@@ -12,7 +14,12 @@ const StyledAbout = styled.div``;
 
 const StyledAboutSection = styled.section`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+
+  ${media.sm`
+    flex-direction: row;
+  `}
 `;
 
 const StyledCity = styled.div`
@@ -22,10 +29,21 @@ const StyledCity = styled.div`
   mask-repeat: no-repeat;
   mask-size: contain;
   mask-type: luminance;
-  margin-left: 1.125rem;
-  max-width: 320px;
   object-fit: cover;
   width: 100%;
+
+  ${media.sm`
+    max-width: 200px;
+  `}
+
+  ${media.md`
+    max-width: 320px;
+  `}
+
+  & .gatsby-image-outer-wrapper,
+  & .gatsby-image-wrapper {
+    height: 100%;
+  }
 `;
 
 const StyledHeading = styled.h1`
@@ -42,13 +60,28 @@ const StyledParagraph = styled.p`
 
 const StyledProjectCardList = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   margin: 0;
+
+  ${media.sm`
+    flex-direction: row;
+    justify-content: space-between;
+  `}
 `;
 
 const StyledProjectLink = styled(Link)`
   display: block;
   text-decoration: none;
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  ${media.sm`
+    &:not(:last-child) {
+      margin-bottom: 0;
+    }
+  `}
 `;
 
 const StyledProjectsSection = styled.section`
@@ -87,6 +120,7 @@ const IndexPage = ({ data }) => {
             alt="The skyline of Charlotte, NC on a sunny day."
             backgroundColor="#f7f5f6"
             fluid={cityImage.childImageSharp.fluid}
+            preserveAspectRatio="xMidYMid slice"
           />
         </StyledCity>
       </StyledAboutSection>

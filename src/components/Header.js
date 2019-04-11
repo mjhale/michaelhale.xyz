@@ -3,6 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
+import { media } from 'src/utils/media';
+
+import Nav from 'src/components/Nav';
 import { Container } from 'src/components/Container';
 
 const Header = styled.header`
@@ -22,56 +25,23 @@ const Logo = styled.h1`
   font-display: swap;
   font-family: 'Abril Fatface', cursive;
   font-weight: normal;
-  font-size: 48px;
+  font-size: 1.8rem;
   font-style: normal;
   line-height: normal;
   margin: 0;
+
+  ${media.md`
+    font-size: 2.4rem;
+  `}
+
+  ${media.lg`
+    font-size: 2.6rem;
+  `}
 `;
 
 const LogoLink = styled(Link)`
   color: #f5f3ec;
   text-decoration: none;
-`;
-
-const MenuToggle = styled.button`
-  display: none;
-`;
-
-const NavItem = styled.li`
-  line-height: 1.4;
-  margin-bottom: 0;
-
-  &:not(:last-of-type) {
-    margin-right: 1rem;
-  }
-`;
-
-const NavLink = styled(Link)`
-  color: rgba(242, 238, 255, 0.93);
-  font-display: swap;
-  font-family: 'Roboto', sans-serif;
-  font-size: 0.9rem;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  font-weight: 400;
-  letter-spacing: 0.07em;
-  text-decoration: none;
-  text-transform: lowercase;
-  text-rendering: optimizeLegibility;
-  transition: color 0.1s linear;
-
-  &:hover {
-    color: #fff;
-  }
-`;
-
-const NavList = styled.ul`
-  align-items: center;
-  align-self: flex-end;
-  display: flex;
-  flex-grow: 1;
-  list-style: none;
-  margin: 0;
 `;
 
 const HeaderComponent = ({ headerBackgroundColor, siteTitle }) => (
@@ -80,17 +50,7 @@ const HeaderComponent = ({ headerBackgroundColor, siteTitle }) => (
       <Logo>
         <LogoLink to="/">{siteTitle}</LogoLink>
       </Logo>
-      <nav aria-label="Main">
-        <NavList>
-          <MenuToggle aria-expanded="false">Menu</MenuToggle>
-          <NavItem>
-            <NavLink to="/work/">Work</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/contact/">Contact</NavLink>
-          </NavItem>
-        </NavList>
-      </nav>
+      <Nav />
     </HeaderContainer>
   </Header>
 );

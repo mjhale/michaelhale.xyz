@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
+import { media } from 'src/utils/media';
+
 import TechnologyIconList from 'src/components/TechnologyIconList';
 
 const StyledContent = styled.div`
   font-size: 0.9rem;
   height: 100%;
+  min-height: 275px;
   padding: 1.5rem 1rem 1rem;
   position: relative;
   z-index: 10;
@@ -47,8 +50,6 @@ const StyledProjectCard = styled.div`
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.04);
   height: 100%;
-  max-width: 310px;
-  min-height: 275px;
   overflow: hidden;
   position: relative;
   transition-duration: 0.1s;
@@ -57,11 +58,27 @@ const StyledProjectCard = styled.div`
   &:hover {
     box-shadow: 0 0 0 1px #31312f, 0 0 1vw #573b61;
   }
+
+  ${media.sm`
+    max-width: 230px;
+  `}
+
+  ${media.md`
+    max-width: 310px;
+  `}
 `;
 
 const StyledSummary = styled.div`
   color: #fff;
   font-size: 0.845rem;
+
+  ${media.sm`
+    font-size: 0.75rem;
+  `};
+
+  ${media.md`
+    font-size: 0.845rem;
+  `};
 `;
 
 const StyledIconList = styled.div`

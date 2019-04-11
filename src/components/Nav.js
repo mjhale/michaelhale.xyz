@@ -66,9 +66,9 @@ NavToggle.propTypes = {
 };
 
 const Nav = () => {
-  const [isExpanded, setIsExpanded] = useState(true);
   let windowWidth = useWindowWidth();
   let isSmallDevice = windowWidth <= breakpoints.sm;
+  const [isExpanded, setIsExpanded] = useState(true);
 
   useEffect(() => {
     if (isSmallDevice) {

@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import theme from 'src/utils/theme';
+
 import { Container } from 'src/components/Container';
 
 const StyledCopyright = styled.div``;
 
 const StyledFooter = styled.footer`
   align-items: center;
-  color: #f5f3ec;
+  color: ${theme.colors.background};
   display: flex;
   flex-grow: 1;
   font-size: 0.8rem;

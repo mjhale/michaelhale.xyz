@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
 
+import theme from 'src/utils/theme';
+
 import Footer from 'src/components/Footer';
 import Header from 'src/components/Header';
 import SkipNavLink from 'src/components/SkipNavLink';
@@ -24,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const StyledChildren = styled.main`
-  background-color: #f5f3ec;
+  background-color: ${theme.colors.background};
   padding-bottom: 1.5rem;
   padding-top: 1.5rem;
 `;
@@ -63,8 +65,8 @@ const Layout = ({ bodyBackgroundColor, children, headerBackgroundColor }) => {
 };
 
 Layout.defaultProps = {
-  bodyBackgroundColor: '#3c2644',
-  headerBackgroundColor: '#825a84',
+  bodyBackgroundColor: theme.colors.offset,
+  headerBackgroundColor: theme.colors.accent,
 };
 
 Layout.propTypes = {

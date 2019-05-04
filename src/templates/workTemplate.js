@@ -1,8 +1,9 @@
-import MDXRenderer from 'gatsby-mdx/mdx-renderer';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
+import { MDXProvider } from '@mdx-js/react';
+import { MDXRenderer } from 'gatsby-mdx';
 
 import Layout from 'src/components/Layout';
 import TechnologyIconList from 'src/components/TechnologyIconList';
@@ -88,13 +89,14 @@ const WorkTemplate = ({ data }) => {
         <TechnologyIconList technologies={frontmatter.technologies} />
       </StyledIconList>
 
-      <MDXRenderer
-        scope={mdxScope}
-        screenshotBackground={fractalBackground}
-        style={frontmatter.style}
-      >
-        {body}
-      </MDXRenderer>
+      <MDXProvider components={{ ...mdxScope }}>
+        <MDXRenderer
+          screenshotBackground={fractalBackground}
+          style={frontmatter.style}
+        >
+          {body}
+        </MDXRenderer>
+      </MDXProvider>
     </Layout>
   );
 };

@@ -18,12 +18,21 @@ const StyledFooter = styled.footer`
   padding-top: 2rem;
 `;
 
-const StyledLink = styled.li`
+const StyledLink = styled.a`
+  color: rgba(242, 238, 255, 0.93);
+  text-decoration: none;
+
+  &:hover {
+    color: #fff;
+  }
+`;
+
+const StyledLinkItem = styled.li`
   margin-bottom: 0;
   padding-left: 0.75rem;
 `;
 
-const StyledLinks = styled.ul`
+const StyledLinkList = styled.ul`
   display: flex;
   list-style: none;
   margin: 0;
@@ -33,10 +42,26 @@ const Footer = () => (
   <Container>
     <StyledFooter>
       <StyledCopyright>© 2019 Michael Hale</StyledCopyright>
-      <StyledLinks>
-        <StyledLink>GitHub</StyledLink>
-        <StyledLink>LinkedIn</StyledLink>
-      </StyledLinks>
+      <StyledLinkList>
+        <StyledLinkItem>
+          <StyledLink
+            href="https://github.com/mjhale"
+            rel="noopener"
+            target="_blank"
+          >
+            GitHub
+          </StyledLink>
+        </StyledLinkItem>
+        <StyledLinkItem>
+          <StyledLink
+            href="https://www.linkedin.com/in/mjhale/"
+            rel="noopener"
+            target="_blank"
+          >
+            LinkedIn
+          </StyledLink>
+        </StyledLinkItem>
+      </StyledLinkList>
     </StyledFooter>
   </Container>
 );

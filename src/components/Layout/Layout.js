@@ -7,10 +7,10 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 import theme from 'src/utils/theme';
 
+import Container from 'src/components/Container';
 import Footer from 'src/components/Footer';
 import Header from 'src/components/Header';
-import SkipNavLink from 'src/components/SkipNavLink';
-import { Container } from 'src/components/Container';
+import SkipNavLink from 'src/components/Layout/SkipNavLink';
 
 const GlobalStyle = createGlobalStyle`
   body {

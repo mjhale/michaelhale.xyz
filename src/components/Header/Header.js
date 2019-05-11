@@ -5,8 +5,8 @@ import { Link } from 'gatsby';
 
 import { media } from 'src/utils/media';
 
+import Container from 'src/components/Container';
 import Nav from 'src/components/Nav';
-import { Container } from 'src/components/Container';
 
 const Header = styled.header`
   background: ${props => props.headerBackgroundColor};

@@ -6,6 +6,7 @@ import encode from 'src/utils/encode';
 
 import Input from 'src/components/Input';
 import Layout from 'src/components/Layout';
+import SubmissionSuccess from 'src/components/Contact/SubmissionSuccess';
 
 const StyledContactContent = styled.div`
   position: relative;
@@ -17,16 +18,6 @@ const StyledFormSection = styled.section`
   opacity: ${props => (props.formSubmissionStatus !== 'success' ? '1' : '0')};
   transition: max-height 0.3s;
   will-change: max-height;
-`;
-
-const StyledSuccessSection = styled.section`
-  bottom: 0;
-  display: ${props =>
-    props.formSubmissionStatus === 'success' ? 'block' : 'none'};
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
 `;
 
 const StyledSubmitButton = styled.button`
@@ -138,10 +129,7 @@ class ContactPage extends React.Component {
               )}
             />
           </StyledFormSection>
-          <StyledSuccessSection formSubmissionStatus={formSubmissionStatus}>
-            <h2>Thank you!</h2>
-            <p>Michael will get back to you as soon as possible.</p>
-          </StyledSuccessSection>
+          <SubmissionSuccess formSubmissionStatus={formSubmissionStatus} />
         </StyledContactContent>
       </Layout>
     );

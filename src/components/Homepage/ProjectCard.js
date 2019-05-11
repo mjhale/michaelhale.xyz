@@ -1,6 +1,6 @@
 import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { media } from 'src/utils/media';
@@ -32,13 +32,15 @@ const StyledImage = styled(Img)`
 const StyledImageOverlay = styled.div`
   background: linear-gradient(
     to top left,
-    hsl(296, 20%, 43%) 7%,
-    hsl(296, 20%, 43%) 20%,
+    ${props =>
+      props.isHovered ? 'hsl(297,19%,44%) 10%' : 'hsl(296, 20%, 43%) 7%'},
+    ${props =>
+      props.isHovered ? 'hsl(297,19%,44%) 73%' : 'hsl(296, 20%, 43%) 20%'},
     #271329
   );
   bottom: 0;
   left: 0;
-  opacity: 0.8;
+  opacity: ${props => (props.isHovered ? '0.7' : '0.8')};
   pointer-events: none;
   position: absolute;
   right: 0;
@@ -54,18 +56,6 @@ const StyledProjectCard = styled.div`
   position: relative;
   transition-duration: 0.1s;
   transition-property: box-shadow;
-
-  &:hover {
-    box-shadow: 0 0 0 1px #31312f, 0 0 1vw #573b61;
-  }
-
-  ${media.sm`
-    max-width: 230px;
-  `}
-
-  ${media.md`
-    max-width: 310px;
-  `}
 `;
 
 const StyledSummary = styled.div`
@@ -89,9 +79,13 @@ const StyledIconList = styled.div`
 
 const ProjectCard = props => {
   const { coverImage, summary, technologies, title } = props;
+  const [isHovered, setHovered] = useState(false);
 
   return (
-    <StyledProjectCard>
+    <StyledProjectCard
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <StyledContent>
         <StyledHeader>{title}</StyledHeader>
         <StyledSummary>{summary}</StyledSummary>
@@ -103,7 +97,7 @@ const ProjectCard = props => {
         fluid={coverImage.childImageSharp.fluid}
         style={{ position: 'absolute' }}
       />
-      <StyledImageOverlay />
+      <StyledImageOverlay isHovered={isHovered} />
     </StyledProjectCard>
   );
 };

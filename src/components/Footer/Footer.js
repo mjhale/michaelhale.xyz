@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import theme from 'src/utils/theme';
 
-import { Container } from 'src/components/Container';
+import Container from 'src/components/Container';
 
 const StyledCopyright = styled.div``;
 

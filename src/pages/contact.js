@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Form, Formik } from 'formik';
+import { Formik } from 'formik';
 
 import encode from 'src/utils/encode';
 
-import Input from 'src/components/Input';
+import ContactForm from 'src/components/Contact/ContactForm';
 import Layout from 'src/components/Layout';
-import SubmissionSuccess from 'src/components/Contact/SubmissionSuccess';
+import SubmissionPopover from 'src/components/Contact/SubmissionPopover';
 
-const StyledContactContent = styled.div`
+const StyledContactWrapper = styled.div`
   position: relative;
 `;
 
@@ -20,10 +20,25 @@ const StyledFormSection = styled.section`
   will-change: max-height;
 `;
 
-const StyledSubmitButton = styled.button`
-  display: block;
-  margin-top: 1rem;
-`;
+const validateForm = values => {
+  let errors = {};
+
+  if (!values.email) {
+    errors.email = 'Required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+
+  if (!values.message) {
+    errors.message = 'Required';
+  }
+
+  if (!values.name) {
+    errors.name = 'Required';
+  }
+
+  return errors;
+};
 
 class ContactPage extends React.Component {
   state = {
@@ -57,7 +72,7 @@ class ContactPage extends React.Component {
     return (
       <Layout>
         <h1>Contact Michael</h1>
-        <StyledContactContent>
+        <StyledContactWrapper>
           <StyledFormSection formSubmissionStatus={formSubmissionStatus}>
             <p>
               Whether you are interested in working together or just want to say
@@ -70,67 +85,21 @@ class ContactPage extends React.Component {
                 message: '',
                 name: '',
               }}
-              validate={values => {
-                let errors = {};
-
-                if (!values.email) {
-                  errors.email = 'Required';
-                } else if (
-                  !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                ) {
-                  errors.email = 'Invalid email address';
-                }
-
-                if (!values.message) {
-                  errors.message = 'Required';
-                }
-
-                if (!values.name) {
-                  errors.name = 'Required';
-                }
-
-                return errors;
-              }}
+              validate={validateForm}
               onSubmit={this.handleSubmit}
               render={({ errors, isSubmitting, status, touched, values }) => (
-                <Form data-netlify="true" name="contact">
-                  <Input
-                    error={touched.name && errors.name}
-                    id="name"
-                    label="Name"
-                    name="name"
-                    value={values.name}
-                  />
-
-                  <Input
-                    error={touched.email && errors.email}
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    type="email"
-                    value={values.email}
-                  />
-
-                  <Input
-                    component="textarea"
-                    error={touched.message && errors.message}
-                    id="message"
-                    label="Message"
-                    name="message"
-                    value={values.message}
-                  />
-
-                  {status && status.msg && <div>{status.msg}</div>}
-
-                  <StyledSubmitButton type="submit" disabled={isSubmitting}>
-                    Submit
-                  </StyledSubmitButton>
-                </Form>
+                <ContactForm
+                  errors={errors}
+                  isSubmitting={isSubmitting}
+                  status={status}
+                  touched={touched}
+                  values={values}
+                />
               )}
             />
           </StyledFormSection>
-          <SubmissionSuccess formSubmissionStatus={formSubmissionStatus} />
-        </StyledContactContent>
+          <SubmissionPopover submissionStatus={formSubmissionStatus} />
+        </StyledContactWrapper>
       </Layout>
     );
   }

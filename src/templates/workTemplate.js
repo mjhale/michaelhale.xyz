@@ -5,6 +5,8 @@ import { graphql } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-mdx';
 
+import theme from 'src/utils/theme';
+
 import Layout from 'src/components/Layout';
 import TechnologyIconList from 'src/components/TechnologyIconList';
 
@@ -13,7 +15,7 @@ const StyledIconList = styled.div`
 `;
 
 const StyledProjectDate = styled.p`
-  color: #777;
+  color: ${theme.color.accent.ralme};
   font-feature-settings: 'onum' 1;
   font-size: 0.9375rem;
   margin: 0;
@@ -31,7 +33,7 @@ const StyledProjectTitle = styled.h1`
 `;
 
 const StyledScreenshot = styled.div`
-  background-color: ${props => props.offsetColor || 'transparent'};
+  background-color: ${props => props.offsetColor || theme.color.clear};
   background-image: ${props =>
     props.backgroundImage ? `url(${props.backgroundImage})` : 'none'};
   background-repeat: ${props =>
@@ -41,12 +43,12 @@ const StyledScreenshot = styled.div`
   padding: 2rem;
 
   & .gatsby-resp-image-wrapper {
-    box-shadow: 0 0.5vw 2.5vw rgba(50, 50, 50, 0.15),
-      0 2vw 4.75vw 1.25vw ${props => props.shadowColor || 'transparent'};
+    box-shadow: 0 0.5vw 2.5vw ${theme.color.accent.darkGray},
+      0 2vw 4.75vw 1.25vw ${props => props.shadowColor || theme.color.clear};
   }
 
   & .gatsby-resp-image-wrapper img {
-    outline: 1px solid rgba(50, 50, 50, 0.15);
+    outline: 1px solid ${theme.color.accent.darkGray};
     outline-offset: -1px;
   }
 `;

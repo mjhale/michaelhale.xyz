@@ -9,7 +9,7 @@ const StyledCopyright = styled.div``;
 
 const StyledFooter = styled.footer`
   align-items: center;
-  color: ${theme.colors.background};
+  color: ${theme.color.core.amethyst};
   display: flex;
   flex-grow: 1;
   font-size: 0.8rem;
@@ -19,11 +19,11 @@ const StyledFooter = styled.footer`
 `;
 
 const StyledLink = styled.a`
-  color: rgba(242, 238, 255, 0.93);
+  color: ${theme.color.core.amethyst};
   text-decoration: none;
 
   &:hover {
-    color: #fff;
+    color: ${theme.color.white};
   }
 `;
 

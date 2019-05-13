@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
+import theme from 'src/utils/theme';
 import useWindowWidth from 'src/hooks/windowWidth';
 import { breakpoints, media } from 'src/utils/media';
 
@@ -22,7 +23,7 @@ const StyledNavItem = styled.li`
 const StyledNavLink = styled(Link)`
   display: block;
   font-display: swap;
-  font-family: 'Roboto', sans-serif;
+  font-family: ${theme.font.robotoFontFamily};
   font-size: 0.9rem;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -33,18 +34,18 @@ const StyledNavLink = styled(Link)`
   transition: color 0.1s linear;
 
   @media (max-width: ${breakpoints.md}px) {
-    border-bottom: 1px solid rgb(219, 219, 219);
-    color: rgb(72, 72, 72);
+    border-bottom: 1px solid ${theme.color.accent.lightGray};
+    color: ${theme.color.accent.ralme};
     padding-bottom: 1rem;
     padding-top: 1rem;
   }
 
   ${media.md`
-    color: rgba(242, 238, 255, 0.93);
+    color: ${theme.color.core.amethyst};
     text-transform: lowercase;
 
     &:hover {
-      color: #fff;
+      color: ${theme.color.white};
     }
   `}
 `;
@@ -56,7 +57,7 @@ const StyledNavList = styled.ul`
   margin: 0;
 
   @media (max-width: ${breakpoints.md}px) {
-    background-color: #f5f3ec;
+    background-color: ${theme.color.core.amethyst};
     flex-direction: column;
     left: 0;
     padding: 2.25rem;
@@ -107,7 +108,7 @@ const StyledNavToggleText = styled.span`
   &,
   &::after,
   &::before {
-    background-color: #fff;
+    background-color: ${theme.color.white};
     display: block;
     height: 2px;
     transition: ${props =>

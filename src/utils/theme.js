@@ -1,32 +1,82 @@
-import { lighten } from 'polished';
+const colorPalette = {
+  accent: {
+    darkGray: 'hsl(0, 0%, 17%)',
+    foggy: 'hsl(49, 12%, 83%)',
+    lightGray: 'hsl(0, 0%, 80%)',
+    mauve: 'hsl(284, 28%, 21%)',
+    mulberry: 'hsl(295, 37%, 12%)',
+    ralme: 'hsl(0, 0%, 46%)',
+  },
 
-const brand = {
-  primary: '',
-  secondary: '',
+  core: {
+    alizarin: 'hsl(0, 86%, 55%)',
+    amethyst: 'hsl(47, 31%, 94%)',
+    narce: 'hsl(48, 97%, 85%)',
+    periwinkle: 'hsl(297, 19%, 44%)',
+  },
+
+  social: {
+    facebook: 'hsl(221, 44%, 48%)',
+    twitter: 'hsl(196, 100%, 46%)',
+  },
+
+  black: 'hsl(0, 0%, 0%)',
+  white: 'hsl(0, 0%, 100%)',
+  clear: 'transparent',
 };
 
-const colors = {
-  accent: 'hsla(297, 19%, 44%, 1)',
-  alert: 'hsla(0, 70%, 50%, 0.75)',
-  background: 'hsla(47, 31%, 94%, 1)',
-  delete: 'hsla(0, 100%, 80%, 0.75',
-  focus: () => colors.accent,
-  link: () => colors.offset,
-  offset: 'hsla(284, 28%, 21%, 1)',
-  text: () => colors.neutralDarkest,
+const color = {
+  status: {
+    danger: colorPalette.core.alizarin,
+    info: colorPalette.core.periwinkle,
+    warning: colorPalette.core.narce,
+  },
 
-  neutral: 'hsla(230, 8%, 60%, 1)',
-  neutralDarkest: () => lighten(0.16, colors.neutral),
-  neutralDarker: () => lighten(0.32, colors.neutral),
-  neutralDark: () => lighten(0.42, colors.neutral),
-  neutralLight: () => lighten(0.7, colors.neutral),
-  neutralLighter: () => lighten(0.8, colors.neutral),
-  neutralLightest: () => lighten(0.88, colors.neutral),
+  focus: colorPalette.core.periwinkle,
+
+  inputBackground: colorPalette.white,
+  inputBorder: colorPalette.lightGray,
+
+  textLink: colorPalette.core.periwinkle,
+  textLinkActive: colorPalette.core.periwinkle,
+  textLinkHover: colorPalette.core.periwinkle,
+  textDisabled: colorPalette.core.ralme,
+  textMutedLarge: colorPalette.core.ralme,
+  textPlaceholder: colorPalette.core.ralme,
+};
+
+const font = {
+  abrilFontFamily:
+    'Abril Fatface, Impact, fantasy, Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif	',
+  defaultFontFamily:
+    '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial',
+  playfairFontFamily: 'Playfair Display, serif',
+  robotoFontFamily:
+    'Roboto,-apple-system,BlinkMacSystemFont,Helvetica Neue,sans-serif',
+  lineHeight: {
+    title1: 52,
+    title2: 36,
+    title3: 30,
+    large: 26,
+    regular: 22,
+    small: 18,
+  },
+  size: {
+    title1: 46,
+    title2: 32,
+    title3: 24,
+    large: 18,
+    regular: 16,
+    small: 14,
+  },
 };
 
 const theme = {
-  brand,
-  colors,
+  color: {
+    ...colorPalette,
+    ...color,
+  },
+  font,
 };
 
 export default theme;

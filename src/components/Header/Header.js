@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
+import theme from 'src/utils/theme';
 import { media } from 'src/utils/media';
 
 import Container from 'src/components/Container';
@@ -23,7 +24,7 @@ const HeaderContainer = styled(Container)`
 const Logo = styled.h1`
   display: inline;
   font-display: swap;
-  font-family: 'Abril Fatface', cursive;
+  font-family: ${theme.font.abrilFontFamily};
   font-weight: normal;
   font-size: 1.8rem;
   font-style: normal;
@@ -40,7 +41,7 @@ const Logo = styled.h1`
 `;
 
 const LogoLink = styled(Link)`
-  color: #f5f3ec;
+  color: ${theme.color.core.amethyst};
   text-decoration: none;
 `;
 

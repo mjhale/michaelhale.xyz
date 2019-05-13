@@ -4,6 +4,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
+import theme from 'src/utils/theme';
+
 const StyledProjectDetails = styled.div`
   min-height: 170px;
   padding: 0.75rem;
@@ -44,13 +46,13 @@ const StyledProjectList = styled.div`
 `;
 
 const StyledProject = styled(Link)`
-  background-color: #d8d6cd;
-  color: #333;
+  background-color: ${theme.color.accent.foggy};
+  color: ${theme.color.accent.darkGray};
   display: block;
   text-decoration: none;
 
   &:hover {
-    background-color: #fff;
+    background-color: ${theme.color.white};
   }
 `;
 

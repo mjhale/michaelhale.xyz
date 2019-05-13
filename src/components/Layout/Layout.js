@@ -15,6 +15,7 @@ import SkipNavLink from 'src/components/Layout/SkipNavLink';
 const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${props => props.bodyBackgroundColor};
+    font-family: ${theme.font.defaultFontFamily};
     font-feature-settings: "pnum";
     -webkit-font-feature-settings: "pnum";
     font-variant-numeric: proportional-nums;
@@ -26,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const StyledChildren = styled.main`
-  background-color: ${theme.colors.background};
+  background-color: ${theme.color.core.amethyst};
   padding-bottom: 1.5rem;
   padding-top: 1.5rem;
 `;
@@ -65,8 +66,8 @@ const Layout = ({ bodyBackgroundColor, children, headerBackgroundColor }) => {
 };
 
 Layout.defaultProps = {
-  bodyBackgroundColor: theme.colors.offset,
-  headerBackgroundColor: theme.colors.accent,
+  bodyBackgroundColor: theme.color.accent.mauve,
+  headerBackgroundColor: theme.color.core.periwinkle,
 };
 
 Layout.propTypes = {

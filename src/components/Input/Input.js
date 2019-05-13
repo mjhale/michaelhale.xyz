@@ -6,7 +6,7 @@ import { Field } from 'formik';
 import theme from 'src/utils/theme';
 
 const StyledErrorMessage = styled.div`
-  color: ${theme.colors.alert};
+  color: ${theme.color.status.danger};
   display: block;
   font-size: 0.85rem;
   font-weight: 700;
@@ -16,8 +16,8 @@ const StyledErrorMessage = styled.div`
 const StyledField = styled(Field)`
   border: ${props =>
     props.error
-      ? `3px solid ${theme.colors.alert}`
-      : `1px solid ${theme.colors.accent}`};
+      ? `3px solid ${theme.color.status.danger}`
+      : `1px solid ${theme.color.core.periwinkle}`};
   display: block;
   font-size: 0.9rem;
   margin-bottom: 1rem;
@@ -26,7 +26,7 @@ const StyledField = styled(Field)`
   width: 100%;
 
   &:focus {
-    outline: 1px dotted ${theme.colors.focus};
+    outline: 1px dotted ${theme.color.focus};
     outline-offset: 2px;
   }
 `;

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import theme from 'src/utils/theme';
 import { media } from 'src/utils/media';
 
 import TechnologyIconList from 'src/components/TechnologyIconList';
@@ -17,7 +18,7 @@ const StyledContent = styled.div`
 `;
 
 const StyledHeader = styled.h2`
-  color: #fff;
+  color: ${theme.color.white};
   font-size: 1.175rem;
 `;
 
@@ -33,14 +34,18 @@ const StyledImageOverlay = styled.div`
   background: linear-gradient(
     to top left,
     ${props =>
-      props.isHovered ? 'hsl(297,19%,44%) 10%' : 'hsl(296, 20%, 43%) 7%'},
+      props.isHovered
+        ? `${theme.color.core.periwinkle} 10%`
+        : `${theme.color.core.periwinkle} 7%`},
     ${props =>
-      props.isHovered ? 'hsl(297,19%,44%) 73%' : 'hsl(296, 20%, 43%) 20%'},
-    #271329
+      props.isHovered
+        ? `${theme.color.core.periwinkle} 73%`
+        : `${theme.color.core.periwinkle} 20%`},
+    ${theme.color.accent.mulberry}
   );
   bottom: 0;
   left: 0;
-  opacity: ${props => (props.isHovered ? '0.7' : '0.8')};
+  opacity: ${props => (props.isHovered ? '0.7' : '0.85')};
   pointer-events: none;
   position: absolute;
   right: 0;
@@ -50,7 +55,6 @@ const StyledImageOverlay = styled.div`
 
 const StyledProjectCard = styled.div`
   border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.04);
   height: 100%;
   overflow: hidden;
   position: relative;
@@ -59,7 +63,7 @@ const StyledProjectCard = styled.div`
 `;
 
 const StyledSummary = styled.div`
-  color: #fff;
+  color: ${theme.color.white};
   font-size: 0.845rem;
 
   ${media.sm`

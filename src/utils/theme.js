@@ -71,12 +71,15 @@ const font = {
   },
 };
 
+const unit = 8;
+
 const theme = {
   color: {
     ...colorPalette,
     ...color,
   },
   font,
+  unit,
 };
 
 export default theme;

@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import Layout from 'src/components/Layout';
+import Link from 'src/components/Link';
 import ProjectList from 'src/components/Work/ProjectList';
 
 const WorkPage = ({ data }) => {
@@ -13,7 +14,7 @@ const WorkPage = ({ data }) => {
       <h1>Work</h1>
       <p>
         Interested in working together?{' '}
-        <Link to="/contact/">Get in touch.</Link>
+        <Link href="/contact/">Get in touch.</Link>
       </p>
 
       <ProjectList projects={projects} />

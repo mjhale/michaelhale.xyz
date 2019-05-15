@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
 
 import { media } from 'src/utils/media';
 
 import Heading from 'src/components/Heading';
 import HeadingSmalltext from 'src/components/Heading/HeadingSmalltext';
+import Link from 'src/components/Link';
 import ProjectCard from 'src/components/Homepage/ProjectCard';
 
 const StyledProjectCardList = styled.div`
@@ -53,7 +53,7 @@ const ProjectCardList = ({ projects }) => {
 
       <StyledProjectCardList>
         {projects.edges.map(({ node: { frontmatter: column } }, index) => (
-          <StyledProjectLink key={index} to={column.path}>
+          <StyledProjectLink href={column.path} key={index}>
             <ProjectCard
               coverImage={column.coverImage}
               title={column.title}

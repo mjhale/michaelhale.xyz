@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import { Link } from 'gatsby';
 
 import theme from 'src/utils/theme';
 import { breakpoints, media } from 'src/utils/media';
+
+import Link from 'src/components/Link';
 
 const StyledNavLink = styled(Link)`
   display: block;

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import theme from 'src/utils/theme';
 
 import Container from 'src/components/Container';
+import Link from 'src/components/Link';
 
 const StyledCopyright = styled.div``;
 
@@ -18,7 +19,7 @@ const StyledFooter = styled.footer`
   padding-top: 2rem;
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
   color: ${theme.color.core.amethyst};
   text-decoration: none;
 

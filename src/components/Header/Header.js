@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
 
 import theme from 'src/utils/theme';
 import { media } from 'src/utils/media';
 
 import Container from 'src/components/Container';
+import Link from 'src/components/Link';
 import Nav from 'src/components/Nav';
 
 const Header = styled.header`
@@ -49,7 +49,7 @@ const HeaderComponent = ({ headerBackgroundColor, siteTitle }) => (
   <Header headerBackgroundColor={headerBackgroundColor}>
     <HeaderContainer>
       <Logo>
-        <LogoLink to="/">{siteTitle}</LogoLink>
+        <LogoLink href="/">{siteTitle}</LogoLink>
       </Logo>
       <Nav />
     </HeaderContainer>

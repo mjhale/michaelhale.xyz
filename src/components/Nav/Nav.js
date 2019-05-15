@@ -64,12 +64,12 @@ const Nav = () => {
       />
       <StyledNavList id="nav-list" isMenuOverlayOpen={isMenuOverlayOpen}>
         <StyledNavItem>
-          <NavLink onClick={() => setIsMenuOverlayOpen(false)} to="/work/">
+          <NavLink href="/work/" onPress={() => setIsMenuOverlayOpen(false)}>
             Work
           </NavLink>
         </StyledNavItem>
         <StyledNavItem>
-          <NavLink onClick={() => setIsMenuOverlayOpen(false)} to="/contact/">
+          <NavLink href="/contact/" onPress={() => setIsMenuOverlayOpen(false)}>
             Contact
           </NavLink>
         </StyledNavItem>

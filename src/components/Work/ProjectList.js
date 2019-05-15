@@ -2,9 +2,10 @@ import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
 
 import theme from 'src/utils/theme';
+
+import Link from 'src/components/Link';
 
 const StyledProjectDetails = styled.div`
   min-height: 170px;
@@ -72,7 +73,7 @@ const ProjectList = ({ projects }) => {
       <h2>Select Projects</h2>
       <StyledProjectList>
         {projects.edges.map(({ node: { frontmatter: column } }, index) => (
-          <StyledProject key={index} to={column.path}>
+          <StyledProject href={column.path} key={index}>
             <StyledProjectImageWrapper>
               <StyledProjectImage
                 fluid={column.coverImage.childImageSharp.fluid}

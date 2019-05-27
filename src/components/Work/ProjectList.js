@@ -88,7 +88,7 @@ const ProjectList = ({ projects }) => {
                 {column.title}
               </StyledProjectTitle>
               <StyledProjectDescription>
-                {column.subtitle}
+                {column.summary}
               </StyledProjectDescription>
             </StyledProjectDetails>
           </StyledProject>

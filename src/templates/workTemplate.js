@@ -8,6 +8,7 @@ import { MDXRenderer } from 'gatsby-mdx';
 import theme from 'src/utils/theme';
 
 import Layout from 'src/components/Layout';
+import Link from 'src/components/Link';
 import TechnologyIconList from 'src/components/TechnologyIconList';
 
 const StyledIconList = styled.div`
@@ -75,6 +76,7 @@ const WorkTemplate = ({ data }) => {
   );
 
   const mdxScope = {
+    Link: Link,
     Screenshot: MDXScreenshot,
   };
 
@@ -112,7 +114,6 @@ WorkTemplate.propTypes = {
         date: PropTypes.string,
         path: PropTypes.string,
         role: PropTypes.string,
-        subtitle: PropTypes.string,
         summary: PropTypes.string,
         style: PropTypes.object,
         technologies: PropTypes.arrayOf(PropTypes.object),
@@ -151,7 +152,6 @@ export const pageQuery = graphql`
           screenshot_shadow
           screenshot_offset
         }
-        subtitle
         summary
         technologies {
           iconImage {

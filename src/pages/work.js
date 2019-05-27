@@ -53,7 +53,6 @@ export const pageQuery = graphql`
               screenshot_offset
               screenshot_shadow
             }
-            subtitle
             summary
             technologies {
               iconImage {

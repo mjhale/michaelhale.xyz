@@ -145,7 +145,7 @@ export const pageQuery = graphql`
             }
           }
         }
-        date(formatString: "MMMM, YYYY")
+        date(formatString: "MMMM YYYY")
         path
         role
         style {

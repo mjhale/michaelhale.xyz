@@ -11,6 +11,7 @@ const StyledTechnologies = styled.ul`
 
 const StyledTechnology = styled.li`
   margin: 0;
+  padding: 3px;
 `;
 
 const StyledTechnologyImage = styled.img`
@@ -32,9 +33,9 @@ const TechnologyIconList = ({ technologies }) => {
           <StyledTechnology key={technologyId}>
             <StyledTechnologyImage
               alt={technologyTitle}
-              height="40"
+              height="30"
               src={technologyIconImageUrl}
-              width="40"
+              width="30"
             />
           </StyledTechnology>
         );

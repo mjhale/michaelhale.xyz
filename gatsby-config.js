@@ -97,6 +97,7 @@ module.exports = {
           ['production', 'stage'].indexOf(process.env.NODE_ENV) !== -1)(),
       },
     },
+    'gatsby-plugin-sitemap',
     'gatsby-plugin-sharp',
     'gatsby-plugin-styled-components',
     {
@@ -111,5 +112,6 @@ module.exports = {
   ],
   siteMetadata: {
     title: 'Michael Hale',
+    siteUrl: 'https://michaelhale.xyz',
   },
 };

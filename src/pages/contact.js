@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import React from 'react';
 import styled from 'styled-components';
 import { Formik } from 'formik';
@@ -71,6 +72,13 @@ class ContactPage extends React.Component {
 
     return (
       <Layout>
+        <Helmet>
+          <title>Contact</title>
+          <meta
+            name="description"
+            content="Contact Michael with consulting, employment, and recruiting inquiries at any time."
+          />
+        </Helmet>
         <h1>Contact Michael</h1>
         <StyledContactWrapper>
           <StyledFormSection formSubmissionStatus={formSubmissionStatus}>

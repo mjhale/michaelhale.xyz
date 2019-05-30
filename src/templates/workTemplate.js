@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
@@ -85,6 +86,11 @@ const WorkTemplate = ({ data }) => {
       bodyBackgroundColor={frontmatter.style.screenshot_shadow}
       headerBackgroundColor={frontmatter.style.screenshot_offset}
     >
+      <Helmet>
+        <title>{frontmatter.title}</title>
+        <meta name="description" content={frontmatter.summary} />
+      </Helmet>
+
       <StyledProjectDate>{frontmatter.date}</StyledProjectDate>
       <StyledProjectTitle>{frontmatter.title}</StyledProjectTitle>
       <StyledProjectRole>{frontmatter.role}</StyledProjectRole>

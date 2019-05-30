@@ -46,11 +46,12 @@ const Layout = ({ bodyBackgroundColor, children, headerBackgroundColor }) => {
   return (
     <>
       <GlobalStyle bodyBackgroundColor={bodyBackgroundColor} />
-      <Helmet
-        title={siteMetaData.site.siteMetadata.title}
-        meta={[{ name: 'description', content: 'Sample' }]}
-      >
+      <Helmet defaultTitle="Michael Hale" titleTemplate="%s | Michael Hale">
         <html lang="en" />
+        <meta
+          name="description"
+          content="Michael Hale is frontend developer and designer in Charlotte, NC who works with JavaScript and Elixir."
+        />
       </Helmet>
       <SkipNavLink contentId="content" />
       <Header

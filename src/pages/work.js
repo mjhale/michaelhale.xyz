@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { graphql } from 'gatsby';
@@ -11,6 +12,13 @@ const WorkPage = ({ data }) => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Work and Projects</title>
+        <meta
+          name="description"
+          content="Michael has worked with a wide range of companies on projects big and small, from consulting on design systems to implementing complete project revamps."
+        />
+      </Helmet>
       <h1>Work</h1>
       <p>
         Interested in working together?{' '}

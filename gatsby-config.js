@@ -25,23 +25,22 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-mdx',
+      resolve: 'gatsby-plugin-mdx',
       options: {
         gatsbyRemarkPlugins: [
-          {
-            resolve: 'gatsby-remark-unwrap-images',
-          },
           {
             resolve: 'gatsby-remark-images',
             options: {
               extensions: ['.mdx', '.md'],
               linkImagesToOriginal: false,
               maxWidth: 800,
-              quality: 80,
-              withWebp: { quality: 90 },
+              quality: 90,
+              withWebp: { quality: 95 },
             },
           },
         ],
+        // @TODO: Fix workaround to force Gatsby to identify gatsby-remark-* plugins
+        plugins: ['gatsby-remark-images'],
       },
     },
     {

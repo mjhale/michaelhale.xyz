@@ -4,7 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
-import { MDXRenderer } from 'gatsby-mdx';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import theme from 'src/utils/theme';
 
@@ -66,10 +66,7 @@ Screenshot.propTypes = {
 const WorkTemplate = ({ data }) => {
   const {
     fractalBackground,
-    project: {
-      code: { body },
-      frontmatter,
-    },
+    project: { body, frontmatter },
   } = data;
 
   const MDXScreenshot = props => (
@@ -115,6 +112,7 @@ WorkTemplate.propTypes = {
   data: PropTypes.shape({
     fractalBackground: PropTypes.object.isRequired,
     project: PropTypes.shape({
+      body: PropTypes.string,
       frontmatter: PropTypes.shape({
         coverImage: PropTypes.object,
         date: PropTypes.string,
@@ -124,9 +122,6 @@ WorkTemplate.propTypes = {
         style: PropTypes.object,
         technologies: PropTypes.arrayOf(PropTypes.object),
         title: PropTypes.string,
-      }).isRequired,
-      code: PropTypes.shape({
-        body: PropTypes.string.isRequired,
       }).isRequired,
     }).isRequired,
   }),
@@ -140,9 +135,7 @@ export const pageQuery = graphql`
       publicURL
     }
     project: mdx(frontmatter: { path: { eq: $path } }) {
-      code {
-        body
-      }
+      body
       frontmatter {
         coverImage {
           childImageSharp {

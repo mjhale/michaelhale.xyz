@@ -42,7 +42,7 @@ const StyledLinkList = styled.ul`
 const Footer = () => (
   <Container>
     <StyledFooter>
-      <StyledCopyright>© 2019 Michael Hale</StyledCopyright>
+      <StyledCopyright>© 2020 Michael Hale</StyledCopyright>
       <StyledLinkList>
         <StyledLinkItem>
           <StyledLink

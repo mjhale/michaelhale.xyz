@@ -1,8 +1,8 @@
-import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
+import { Helmet } from 'react-helmet';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 

@@ -1,7 +1,7 @@
-import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { graphql } from 'gatsby';
+import { Helmet } from 'react-helmet';
 
 import Layout from 'src/components/Layout';
 import Link from 'src/components/Link';

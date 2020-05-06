@@ -1,7 +1,7 @@
-import Helmet from 'react-helmet';
 import React from 'react';
 import styled from 'styled-components';
 import { Formik } from 'formik';
+import { Helmet } from 'react-helmet';
 
 import encode from 'src/utils/encode';
 

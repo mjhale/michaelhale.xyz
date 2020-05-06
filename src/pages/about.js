@@ -1,5 +1,5 @@
-import Helmet from 'react-helmet';
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 import Layout from 'src/components/Layout';
 import Link from 'src/components/Link';

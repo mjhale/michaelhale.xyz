@@ -1,8 +1,8 @@
-import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
+import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import theme from 'src/utils/theme';

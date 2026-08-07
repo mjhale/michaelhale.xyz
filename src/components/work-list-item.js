@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import AppLink from '@/src/components/app-link';
 
-export default function WorkListItem({ project }) {
+export default function WorkListItem({ preload = false, project }) {
   return (
     <AppLink
       className="block bg-brand-fog text-brand-ink no-underline transition hover:bg-white"
@@ -12,7 +12,8 @@ export default function WorkListItem({ project }) {
           alt={project.title}
           className="object-cover"
           fill
-          sizes="(max-width: 1024px) 100vw, 50vw"
+          preload={preload}
+          sizes="(max-width: 669px) calc(100vw - 40px), (max-width: 1039px) calc((100vw - 56px) / 2), 492px"
           src={project.coverImageUrl}
         />
         <div

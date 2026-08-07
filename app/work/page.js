@@ -23,8 +23,12 @@ export default function WorkPage() {
 
       <h2 className="mt-8 text-2xl font-bold">Select Projects</h2>
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        {projects.map(project => (
-          <WorkListItem key={project.id} project={project} />
+        {projects.map((project, index) => (
+          <WorkListItem
+            key={project.id}
+            preload={index === 0}
+            project={project}
+          />
         ))}
       </div>
     </>

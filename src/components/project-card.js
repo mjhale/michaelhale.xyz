@@ -2,7 +2,7 @@ import Image from 'next/image';
 import AppLink from '@/src/components/app-link';
 import TechnologyIconList from '@/src/components/technology-icon-list';
 
-export default function ProjectCard({ project }) {
+export default function ProjectCard({ preload = false, project }) {
   return (
     <AppLink
       className="group block h-full overflow-hidden rounded-md"
@@ -13,7 +13,8 @@ export default function ProjectCard({ project }) {
           alt={project.title}
           className="object-cover"
           fill
-          sizes="(max-width: 1024px) 100vw, 33vw"
+          preload={preload}
+          sizes="(max-width: 669px) calc(100vw - 40px), (max-width: 1039px) calc((100vw - 56px) / 2), 323px"
           src={project.coverImageUrl}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-brand-plum-dark/80 via-brand-lilac/85 to-brand-lilac/95 opacity-110 transition group-hover:opacity-75" />

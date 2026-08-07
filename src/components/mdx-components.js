@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element -- Generated MDX images use responsive picture sources that next/image cannot preserve. */
+
 import AppLink from '@/src/components/app-link';
 
 function sanitizeStyleValue(value) {
@@ -107,7 +109,6 @@ function createMdxImageComponent(defaults) {
       resolvedSrc.startsWith('/') && dimensions && fallbackSrc;
 
     if (!canUseResponsivePicture) {
-      // eslint-disable-next-line @next/next/no-img-element
       return (
         <img
           {...props}
@@ -127,7 +128,6 @@ function createMdxImageComponent(defaults) {
             type="image/webp"
           />
         ) : null}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt={alt}
           className="h-auto w-full border border-brand-ink"

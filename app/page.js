@@ -22,7 +22,7 @@ export default function HomePage() {
             alt="The skyline of Charlotte, NC on a sunny day."
             className="object-cover"
             fill
-            sizes="(max-width: --breakpoint-md) 100vw, 360px"
+            sizes="(max-width: 879px) calc(100vw - 40px), 360px"
             src="/images/charlotte-skyline.jpg"
           />
         </div>
@@ -54,8 +54,12 @@ export default function HomePage() {
           </span>
         </h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {recentWork.map(project => (
-            <ProjectCard key={project.id} project={project} />
+          {recentWork.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              preload={index === 0}
+              project={project}
+            />
           ))}
         </div>
       </section>

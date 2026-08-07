@@ -1,20 +1,22 @@
-import fs from 'node:fs';
-import path from 'node:path';
+const manifestSources = import.meta.glob(
+  'public/generated/image-manifest.json',
+  {
+    base: '../../',
+    eager: true,
+    import: 'default',
+    query: '?raw',
+  }
+);
+const manifestSource =
+  manifestSources['public/generated/image-manifest.json'];
 
 export function getImageManifest() {
-  const manifestPath = path.join(
-    process.cwd(),
-    'public',
-    'generated',
-    'image-manifest.json'
-  );
-
-  if (!fs.existsSync(manifestPath)) {
+  if (typeof manifestSource !== 'string') {
     return {};
   }
 
   try {
-    return JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    return JSON.parse(manifestSource);
   } catch (_error) {
     return {};
   }

@@ -1,12 +1,19 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import { load as loadYaml } from 'js-yaml';
 import { z } from 'zod';
 import { parseFrontmatter } from '@/src/lib/frontmatter.mjs';
 
-const root = process.cwd();
-const workDir = path.join(root, 'content', 'work');
-const technologyDir = path.join(root, 'content', 'technologies');
+const technologySources = import.meta.glob('content/technologies/*.yml', {
+  base: '../../',
+  eager: true,
+  import: 'default',
+  query: '?raw',
+});
+const workSources = import.meta.glob('content/work/**/*.mdx', {
+  base: '../../',
+  eager: true,
+  import: 'default',
+  query: '?raw',
+});
 
 const frontmatterSchema = z.object({
   coverImage: z.string().min(1),
@@ -21,28 +28,6 @@ const frontmatterSchema = z.object({
     screenshot_shadow: z.string().min(1),
   }),
 });
-
-function walk(dirPath) {
-  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
-  const files = [];
-
-  for (const entry of entries) {
-    if (entry.name.startsWith('.')) {
-      continue;
-    }
-
-    const resolved = path.join(dirPath, entry.name);
-
-    if (entry.isDirectory()) {
-      files.push(...walk(resolved));
-      continue;
-    }
-
-    files.push(resolved);
-  }
-
-  return files;
-}
 
 function normalizePath(rawPath) {
   let normalized = rawPath.startsWith('/') ? rawPath : `/${rawPath}`;
@@ -68,37 +53,39 @@ function dateSortValue(yyyyMm) {
   return Date.parse(`${yyyyMm}-01T00:00:00.000Z`);
 }
 
+function sourcePathSegment(sourcePath, offsetFromEnd) {
+  return sourcePath.split('/').at(-offsetFromEnd);
+}
+
 function loadTechnologyMap() {
-  const technologyFiles = walk(technologyDir).filter(filePath =>
-    filePath.endsWith('.yml')
-  );
-  const entries = technologyFiles.map(filePath => {
-    const parsed = loadYaml(fs.readFileSync(filePath, 'utf8'));
-    const title = parsed?.title;
-    const iconImage = parsed?.iconImage;
+  const entries = Object.entries(technologySources).map(
+    ([sourcePath, source]) => {
+      const parsed = loadYaml(source);
+      const title = parsed?.title;
+      const iconImage = parsed?.iconImage;
 
-    if (!title || !iconImage) {
-      throw new Error(`Invalid technology file: ${filePath}`);
-    }
+      if (!title || !iconImage) {
+        throw new Error(`Invalid technology file: ${sourcePath}`);
+      }
 
-    return [
-      title,
-      {
-        id: path.basename(filePath, '.yml'),
+      return [
         title,
-        iconImageUrl: `/technologies/${iconImage}`,
-      },
-    ];
-  });
+        {
+          id: sourcePathSegment(sourcePath, 1).replace(/\.yml$/, ''),
+          title,
+          iconImageUrl: `/technologies/${iconImage}`,
+        },
+      ];
+    }
+  );
 
   return new Map(entries);
 }
 
 const technologyMap = loadTechnologyMap();
 
-function parseWorkFile(filePath) {
-  const raw = fs.readFileSync(filePath, 'utf8');
-  const { data, content } = parseFrontmatter(raw, filePath);
+function parseWorkFile(sourcePath, source) {
+  const { data, content } = parseFrontmatter(source, sourcePath);
   const frontmatter = frontmatterSchema.parse(data);
   const normalizedPath = normalizePath(frontmatter.path);
   const routePath = trailingPath(normalizedPath);
@@ -119,7 +106,7 @@ function parseWorkFile(filePath) {
   });
 
   const project = {
-    id: path.basename(path.dirname(filePath)),
+    id: sourcePathSegment(sourcePath, 2),
     title: frontmatter.title,
     summary: frontmatter.summary,
     role: frontmatter.role,
@@ -131,17 +118,14 @@ function parseWorkFile(filePath) {
     style: frontmatter.style,
     technologies,
     body: content,
-    absoluteFilePath: filePath,
   };
 
   return project;
 }
 
 function loadWorkProjects() {
-  const mdxFiles = walk(workDir).filter(filePath => filePath.endsWith('.mdx'));
-
-  return mdxFiles
-    .map(parseWorkFile)
+  return Object.entries(workSources)
+    .map(([sourcePath, source]) => parseWorkFile(sourcePath, source))
     .sort((a, b) => dateSortValue(b.date) - dateSortValue(a.date));
 }
 

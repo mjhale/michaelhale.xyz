@@ -5,6 +5,8 @@
  */
 const nextConfig = {
   output: 'standalone',
+  cacheComponents: true,
+  partialPrefetching: true,
   trailingSlash: true,
   turbopack: {
     rules: {
@@ -26,8 +28,8 @@ const nextConfig = {
     },
   },
   images: {
-    formats: ['image/avif', 'image/webp']
-  }
-}
+    formats: ['image/avif', 'image/webp'],
+  },
+};
 
-export default nextConfig
+export default nextConfig;

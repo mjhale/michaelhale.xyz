@@ -1,9 +1,19 @@
 import AppLink from '@/src/components/app-link';
+import { cacheLife } from 'next/cache';
 
-export default function Footer() {
+async function getCurrentYear() {
+  'use cache';
+  cacheLife('max');
+
+  return new Date().getFullYear();
+}
+
+export default async function Footer() {
+  const currentYear = await getCurrentYear();
+
   return (
     <footer className="mx-auto flex w-full max-w-[1040px] items-center justify-between px-5 py-8 text-sm text-brand-cream">
-      <p>© {new Date().getFullYear()} Michael Hale</p>
+      <p>© {currentYear} Michael Hale</p>
       <ul className="flex items-center gap-4">
         <li>
           <AppLink

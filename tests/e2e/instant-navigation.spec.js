@@ -65,6 +65,29 @@ test('renders a generated project instantly on an initial visit', async ({
   );
 });
 
+test('restores the default theme after leaving a project', async ({ page }) => {
+  const readTheme = () =>
+    page.evaluate(() => ({
+      body: getComputedStyle(document.body).backgroundColor,
+      header: getComputedStyle(document.querySelector('header')).backgroundColor,
+    }));
+
+  await page.goto('/work/');
+  await page.locator('a[href="/work/blaseball-reference/"]').click();
+  await page.waitForURL(url => url.pathname === '/work/blaseball-reference/');
+  await expect.poll(readTheme).toEqual({
+    body: 'rgb(80, 30, 30)',
+    header: 'rgb(162, 77, 77)',
+  });
+
+  await page.getByRole('link', { name: 'Michael Hale' }).click();
+  await page.waitForURL(url => url.pathname === '/');
+  await expect.poll(readTheme).toEqual({
+    body: 'rgb(66, 42, 75)',
+    header: 'rgb(143, 99, 146)',
+  });
+});
+
 test('preserves the not-found page for an unknown project', async ({
   page,
 }) => {

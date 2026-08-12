@@ -35,9 +35,10 @@ export default async function WorkDetailPage({ params }) {
   }
 
   return (
-    <article>
+    <article data-page-theme={project.id}>
       <style>{`
-        :root {
+        /* Instant navigation retains the previous page with an inline display override. */
+        :root:has(article[data-page-theme="${project.id}"]:not([style*="display: none"])) {
           --page-body-bg: ${project.style.screenshot_shadow};
           --page-header-bg: ${project.style.screenshot_offset};
           --page-main-bg: ${project.style.screenshot_shadow};
